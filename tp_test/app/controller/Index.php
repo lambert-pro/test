@@ -4,6 +4,7 @@ namespace app\controller;
 
 use app\BaseController;
 use app\common\HttpTrait;
+use app\model\LetMeTest;
 
 
 class Index extends BaseController
@@ -17,9 +18,9 @@ class Index extends BaseController
 
     public function test()
     {
-        die;
-        $result = $this->get('www.baidu.com');
-        print_r($result);
+        $test = new LetMeTest();
+        $result = $test->getList();
+        print_r($result);die;
     }
 
     public function login($name = 'ThinkPHP6')
