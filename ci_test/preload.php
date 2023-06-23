@@ -49,7 +49,7 @@ class preload
      */
     private array $paths = [
         [
-            'include' => __DIR__ . '/vendor/codeigniter4/framework/system',
+            'include' => __DIR__.'/vendor/codeigniter4/framework/system',
             'exclude' => [
                 // Not needed if you don't use them.
                 '/system/Database/OCI8/',

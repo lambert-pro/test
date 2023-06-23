@@ -41,22 +41,22 @@ final class ComposerScripts
      */
     private static array $dependencies = [
         'kint-src' => [
-            'license' => __DIR__ . '/../vendor/kint-php/kint/LICENSE',
-            'from'    => __DIR__ . '/../vendor/kint-php/kint/src/',
+            'license' => __DIR__.'/../vendor/kint-php/kint/LICENSE',
+            'from'    => __DIR__.'/../vendor/kint-php/kint/src/',
             'to'      => __DIR__ . '/ThirdParty/Kint/',
         ],
         'kint-resources' => [
-            'from' => __DIR__ . '/../vendor/kint-php/kint/resources/',
+            'from' => __DIR__.'/../vendor/kint-php/kint/resources/',
             'to'   => __DIR__ . '/ThirdParty/Kint/resources/',
         ],
         'escaper' => [
-            'license' => __DIR__ . '/../vendor/laminas/laminas-escaper/LICENSE.md',
-            'from'    => __DIR__ . '/../vendor/laminas/laminas-escaper/src/',
+            'license' => __DIR__.'/../vendor/laminas/laminas-escaper/LICENSE.md',
+            'from'    => __DIR__.'/../vendor/laminas/laminas-escaper/src/',
             'to'      => __DIR__ . '/ThirdParty/Escaper/',
         ],
         'psr-log' => [
-            'license' => __DIR__ . '/../vendor/psr/log/LICENSE',
-            'from'    => __DIR__ . '/../vendor/psr/log/Psr/Log/',
+            'license' => __DIR__.'/../vendor/psr/log/LICENSE',
+            'from'    => __DIR__.'/../vendor/psr/log/Psr/Log/',
             'to'      => __DIR__ . '/ThirdParty/PSR/Log/',
         ],
     ];
