@@ -4,8 +4,61 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "66559480dea8532df6a457e4e313a236",
+    "content-hash": "cd964ec38eca9240b95056253b43f3c6",
     "packages": [
+        {
+            "name": "githusband/validation",
+            "version": "v2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/gitHusband/Validation.git",
+                "reference": "a0baee0818739916635461e9c08e6a933e6814fa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/gitHusband/Validation/zipball/a0baee0818739916635461e9c08e6a933e6814fa",
+                "reference": "a0baee0818739916635461e9c08e6a933e6814fa",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "githusband\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Guangzi Lin",
+                    "email": "707077549@qq.com",
+                    "homepage": "https://github.com/gitHusband/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Parameters Validation",
+            "homepage": "https://github.com/gitHusband/Validation",
+            "keywords": [
+                "parameters",
+                "validation"
+            ],
+            "support": {
+                "issues": "https://github.com/gitHusband/Validation/issues",
+                "source": "https://github.com/gitHusband/Validation/tree/v2.0.0"
+            },
+            "time": "2023-02-15T01:49:36+00:00"
+        },
         {
             "name": "league/flysystem",
             "version": "1.1.10",

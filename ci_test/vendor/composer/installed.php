@@ -3,7 +3,7 @@
         'name' => 'codeigniter4/framework',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'dddb5ffca8d4946fcb71dea714406bf6f0459bef',
+        'reference' => '2d45c3e1cd2dd5ad21dcb37c65bfe7f2eaea6215',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -22,7 +22,7 @@
         'codeigniter4/framework' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'dddb5ffca8d4946fcb71dea714406bf6f0459bef',
+            'reference' => '2d45c3e1cd2dd5ad21dcb37c65bfe7f2eaea6215',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -108,6 +108,15 @@
             'install_path' => __DIR__ . '/../friendsofphp/php-cs-fixer',
             'aliases' => array(),
             'dev_requirement' => true,
+        ),
+        'githusband/validation' => array(
+            'pretty_version' => 'v2.0.0',
+            'version' => '2.0.0.0',
+            'reference' => 'a0baee0818739916635461e9c08e6a933e6814fa',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../githusband/validation',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
         'kint-php/kint' => array(
             'pretty_version' => '5.0.6',

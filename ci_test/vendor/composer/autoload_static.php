@@ -21,6 +21,10 @@ class ComposerStaticInit44205f79600aed601d96f2e72651c472
     );
 
     public static $prefixLengthsPsr4 = array (
+        'g' => 
+        array (
+            'githusband\\' => 11,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Php81\\' => 23,
@@ -85,6 +89,10 @@ class ComposerStaticInit44205f79600aed601d96f2e72651c472
     );
 
     public static $prefixDirsPsr4 = array (
+        'githusband\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/githusband/validation/src',
+        ),
         'Symfony\\Polyfill\\Php81\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-php81',
@@ -336,6 +344,7 @@ class ComposerStaticInit44205f79600aed601d96f2e72651c472
         'CodeIgniter\\Database\\BaseUtils' => __DIR__ . '/../..' . '/system/Database/BaseUtils.php',
         'CodeIgniter\\Database\\Config' => __DIR__ . '/../..' . '/system/Database/Config.php',
         'CodeIgniter\\Database\\ConnectionInterface' => __DIR__ . '/../..' . '/system/Database/ConnectionInterface.php',
+        'CodeIgniter\\Database\\Database' => __DIR__ . '/../..' . '/system/Database/Database.php',
         'CodeIgniter\\Database\\Exceptions\\DataException' => __DIR__ . '/../..' . '/system/Database/Exceptions/DataException.php',
         'CodeIgniter\\Database\\Exceptions\\DatabaseException' => __DIR__ . '/../..' . '/system/Database/Exceptions/DatabaseException.php',
         'CodeIgniter\\Database\\Exceptions\\ExceptionInterface' => __DIR__ . '/../..' . '/system/Database/Exceptions/ExceptionInterface.php',
@@ -386,6 +395,7 @@ class ComposerStaticInit44205f79600aed601d96f2e72651c472
         'CodeIgniter\\Debug\\Toolbar' => __DIR__ . '/../..' . '/system/Debug/Toolbar.php',
         'CodeIgniter\\Debug\\Toolbar\\Collectors\\BaseCollector' => __DIR__ . '/../..' . '/system/Debug/Toolbar/Collectors/BaseCollector.php',
         'CodeIgniter\\Debug\\Toolbar\\Collectors\\Config' => __DIR__ . '/../..' . '/system/Debug/Toolbar/Collectors/Config.php',
+        'CodeIgniter\\Debug\\Toolbar\\Collectors\\Database' => __DIR__ . '/../..' . '/system/Debug/Toolbar/Collectors/Database.php',
         'CodeIgniter\\Debug\\Toolbar\\Collectors\\Events' => __DIR__ . '/../..' . '/system/Debug/Toolbar/Collectors/Events.php',
         'CodeIgniter\\Debug\\Toolbar\\Collectors\\Files' => __DIR__ . '/../..' . '/system/Debug/Toolbar/Collectors/Files.php',
         'CodeIgniter\\Debug\\Toolbar\\Collectors\\History' => __DIR__ . '/../..' . '/system/Debug/Toolbar/Collectors/History.php',
@@ -3436,6 +3446,7 @@ class ComposerStaticInit44205f79600aed601d96f2e72651c472
         'TheSeer\\Tokenizer\\XMLSerializer' => __DIR__ . '/..' . '/theseer/tokenizer/src/XMLSerializer.php',
         'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
         'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
+        'githusband\\Validation' => __DIR__ . '/..' . '/githusband/validation/src/Validation.php',
         'org\\bovigo\\vfs\\DotDirectory' => __DIR__ . '/..' . '/mikey179/vfsstream/src/main/php/org/bovigo/vfs/DotDirectory.php',
         'org\\bovigo\\vfs\\Quota' => __DIR__ . '/..' . '/mikey179/vfsstream/src/main/php/org/bovigo/vfs/Quota.php',
         'org\\bovigo\\vfs\\content\\FileContent' => __DIR__ . '/..' . '/mikey179/vfsstream/src/main/php/org/bovigo/vfs/content/FileContent.php',
