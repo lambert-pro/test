@@ -8,6 +8,7 @@ use CodeIgniter\HTTP\IncomingRequest;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
+use App\Libraries\SendResponseTrait;
 
 /**
  * Class BaseController
@@ -21,6 +22,8 @@ use Psr\Log\LoggerInterface;
  */
 abstract class BaseController extends Controller
 {
+    use SendResponseTrait;
+
     /**
      * Instance of the main Request object.
      *
@@ -54,5 +57,18 @@ abstract class BaseController extends Controller
         // Preload any models, libraries, etc, here.
 
         // E.g.: $this->session = \Config\Services::session();
+    }
+
+    public function getJson($assoc = true)
+    {
+        $request = $this->request->getJSON($assoc);
+        if ($request === null && json_last_error() !== JSON_ERROR_NONE)
+        {
+            $invalidParameters = ['parameter' => 'body', 'reason' => 'Syntax error, please check your request.'];
+            $errorMessage = $this->generateErrorMessage($invalidParameters);
+            $this->error($errorMessage);
+        }
+        // return an array.
+        return esc($request);
     }
 }

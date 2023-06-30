@@ -36,6 +36,7 @@ $routes->get('/home', 'Home::index');
 # Index
 $routes->get('/', 'Index::index');
 $routes->get('/test', 'Index::test');
+$routes->post('/useValidationClass', 'Index::useValidationClass');
 
 /*
  * --------------------------------------------------------------------
@@ -50,6 +51,7 @@ $routes->get('/test', 'Index::test');
  * You will have access to the $routes object within that file without
  * needing to reload it.
  */
+
 if (is_file(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
     require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
 }

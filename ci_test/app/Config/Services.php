@@ -29,4 +29,12 @@ class Services extends BaseService
      *     return new \CodeIgniter\Example();
      * }
      */
+
+    public static function myValidation(bool $getShared = true)
+    {
+        if ($getShared){
+            return static::getSharedInstance("myValidation");
+        }
+        return new \App\Libraries\Validation\Validation();
+    }
 }

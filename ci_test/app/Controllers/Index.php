@@ -19,4 +19,29 @@ class Index extends BaseController
         print_r($model->getList());
     }
 
+    public function useValidationClass()
+    {
+        $request = $this->getJson();
+        $request['header'] = intval($this->request->getHeaderLine('header')) ?? 0;
+
+        $rules = [
+            "header" => "required|int|len<=>=[2,6]",
+            "age" => [
+                "required|int|<=>[1,100]",
+                "error_message" => [
+                    'required' => '输入年龄是必须的',
+                    'int' => '年龄请输入整数类型'
+                ]
+            ]
+        ];
+
+        $validation = \Config\Services::myValidation();
+        if (!$validation->set_rules($rules)->validate($request)) {
+            $invalidParameters = $validation->getInvalidParameters();
+            $errorMessage = $this->generateErrorMessage($invalidParameters);
+            $this->sendValidateionFaild($errorMessage);
+        }
+
+        $this->success('Validation pass.');
+    }
 }
