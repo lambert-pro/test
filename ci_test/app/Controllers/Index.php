@@ -9,6 +9,7 @@ class Index extends BaseController
     public function index()
     {
         echo 'welcome to CI '.\CodeIgniter\CodeIgniter::CI_VERSION;
+        exit;
     }
 
     public function test()
@@ -27,12 +28,13 @@ class Index extends BaseController
         $rules = [
             "header" => "required|int|len<=>=[2,6]",
             "age" => [
-                "required|int|<=>[1,100]",
+                "required|int|<=>=[1,100]",
                 "error_message" => [
                     'required' => '输入年龄是必须的',
                     'int' => '年龄请输入整数类型'
                 ]
-            ]
+            ],
+            "country" => "optional|checkCountry"
         ];
 
         $validation = \Config\Services::myValidation();

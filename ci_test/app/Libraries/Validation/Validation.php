@@ -17,7 +17,7 @@ class Validation extends \githusband\Validation
         $this->set_language('ApiTemplate');
     }
 
-    public function getInvalidParameters()
+    public function getInvalidParameters(): array
     {
         $error = $this->get_error(false,true);
         $invalidParameters = [];
@@ -30,4 +30,11 @@ class Validation extends \githusband\Validation
         return $invalidParameters;
     }
 
+    public function checkCountry($country): bool
+    {
+
+        if (!empty($country))
+            return 'test fail';
+        return true;
+    }
 }
