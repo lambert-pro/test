@@ -30,11 +30,14 @@ class Validation extends \githusband\Validation
         return $invalidParameters;
     }
 
-    public function checkCountry($country): bool
+    public function checkCountry($country): string|bool
     {
+        if (empty($country)){
+            return 'please confirm country.';
+        }else{
+            return true;
+        }
 
-        if (!empty($country))
-            return 'test fail';
-        return true;
+
     }
 }

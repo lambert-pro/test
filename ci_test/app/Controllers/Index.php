@@ -30,11 +30,11 @@ class Index extends BaseController
             "age" => [
                 "required|int|<=>=[1,100]",
                 "error_message" => [
-                    'required' => '输入年龄是必须的',
-                    'int' => '年龄请输入整数类型'
+                    'required' => 'This is required field.',
+                    'int' => 'Please confirm type(int).'
                 ]
             ],
-            "country" => "optional|checkCountry"
+            "country" => "checkCountry"
         ];
 
         $validation = \Config\Services::myValidation();
