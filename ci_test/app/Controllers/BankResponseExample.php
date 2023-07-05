@@ -1,7 +1,5 @@
 <?php
 
-$myArray = [1, 2, 3];
-
 $bankResponseExample = [
     BANK_BARCLAYCARD => '4381900031211D18500ACCOUNT
 VALID000230322280010020000000012110331163900017602LCB1BWRD381900032303311001MDWNE0EMK 0331',
@@ -80,22 +78,3 @@ VALID000230322280010020000000012110331163900017602LCB1BWRD38190003230331
     BANK_FINARO => '',
     BANK_TEST_BANK => '',
 ];
-
-//function matchResponse($bankId){
-//    global $bankResponseExample;
-//    print_r($bankResponseExample);die;
-//    if (!empty($bankResponseExample[$bankId]))
-//        return $bankResponseExample[$bankId];
-//    else
-//        return '';
-//}
-
-
-$myArray = [1, 2, 3];
-
-function matchResponse() {
-    global $myArray;
-    // 在函数内部可以访问 $myArray 数组
-    print_r($myArray);
-}
-matchResponse();

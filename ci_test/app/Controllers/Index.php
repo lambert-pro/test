@@ -3,12 +3,13 @@
 namespace App\Controllers;
 
 use App\Models\LetMeTestModel;
+use think\Exception;
 
 class Index extends BaseController
 {
     public function index()
     {
-        echo 'welcome to CI '.\CodeIgniter\CodeIgniter::CI_VERSION;
+        echo 'welcome to CI ' . \CodeIgniter\CodeIgniter::CI_VERSION;
         exit;
     }
 
@@ -50,50 +51,45 @@ class Index extends BaseController
 
     public function matchSchemeReferenceData()
     {
-        include 'BankResponseExample.php';
-        return $myArray;
-
-
-        include(__DIR__."/BankResponseExample.php");
+        global $bankResponseExample;
+        require_once(__DIR__ . '/BankResponseExample.php');
         $request = $this->getJson();
         $bankId = $request['bank_id'] ?? 0;
-        $bankResponse = !empty($request['bank_response']) ? $request['bank_response'] : matchResponse($bankId);
-print_r($bankResponse);die;
+        if (!empty($request['bank_response'])) {
+            $bankResponse = $request['bank_response'];
+        } else {
+            $bankResponse = $bankResponseExample[$bankId] ?? "";
+        }
+
         // SRD is mean SchemeReferenceData
-        switch ($bankId){
+        $SRD = null;
+        switch ($bankId) {
             case BANK_TEST_BANK:
-                $this->handleTsetBank($bankResponse);
+                $SRD = $this->handleTsetBank($bankResponse);
                 break;
             case BANK_CASHFLOW:
-
-                break;
-            case BANK_FINARO:
-
+                $SRD = $this->handleCashflow($bankResponse);
                 break;
             case BANK_BARCLAYCARD:
                 $SRD = $this->handleBarclaycardSRD($bankResponse);
                 break;
+            case BANK_FINARO:
+                $SRD = $this->handleFinaro($bankResponse);
+                break;
             default :
-                $SRD = "NULL";
                 break;
         }
-
-        echo "SchemeReferenceData:".$SRD;
+        $this->success(['SchemeReferenceData' => $SRD]);
     }
 
     protected function handleTsetBank($bankResponse)
     {
-
+        return 1;
     }
 
     protected function handleCashflow($bankResponse)
     {
-
-    }
-
-    protected function handleFinaro($bankResponse)
-    {
-
+        return 1;
     }
 
     protected function handleBarclaycardSRD($bankResponse)
@@ -119,7 +115,11 @@ print_r($bankResponse);die;
 
         $auxiliaryData = $bankResponseArr['auxiliary_data'];
         preg_match('/1001([\w\s]*)/i', $auxiliaryData, $adMatch);
-        $SRD = $adMatch[1] ?? '';
-        return $SRD;
+        return $adMatch[1] ?? '';
+    }
+
+    protected function handleFinaro($bankResponse)
+    {
+        return 1;
     }
 }
