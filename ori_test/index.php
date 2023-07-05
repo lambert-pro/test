@@ -289,3 +289,14 @@ function uuid4(){
 //$result = preg_replace('/^[^\w]+|[^\w]+$/', '', $string);
 //echo $result;   // 输出：asfjhgghfs
 
+
+$myArray = [1, 2, 3];
+
+function myFunction() {
+    global $myArray;
+    // 在函数内部可以访问 $myArray 数组
+    print_r($myArray);
+}
+
+// 确保函数调用发生在数组定义之后
+myFunction();

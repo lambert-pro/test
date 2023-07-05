@@ -37,6 +37,7 @@ $routes->get('/home', 'Home::index');
 $routes->get('/', 'Index::index');
 $routes->get('/test', 'Index::test');
 $routes->post('/useValidationClass', 'Index::useValidationClass');
+$routes->post('/matchSchemeReferenceData', 'Index::matchSchemeReferenceData');
 
 /*
  * --------------------------------------------------------------------

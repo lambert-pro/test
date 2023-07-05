@@ -92,3 +92,15 @@ define('EVENT_PRIORITY_NORMAL', 100);
  * @deprecated Use \CodeIgniter\Events\Events::PRIORITY_HIGH instead.
  */
 define('EVENT_PRIORITY_HIGH', 10);
+
+# bank
+defined('BANK_MIGRATION') || define('BANK_MIGRATION', '99');
+defined('BANK_TEST_BANK') || define('BANK_TEST_BANK', '109');
+defined('BANK_CASHFLOW') || define('BANK_CASHFLOW', '111');
+defined('BANK_WORLDLINE') || define('BANK_WORLDLINE', '112');
+defined('BANK_ACQUIRED') || define('BANK_ACQUIRED', '113');
+defined('BANK_BARCLAYCARD') || define('BANK_BARCLAYCARD', '114');
+defined('BANK_LLOYDS_CARDNET') || define('BANK_LLOYDS_CARDNET', '115');
+defined('BANK_FINARO') || define('BANK_FINARO', '116');
+defined('BANK_MODULR') || define('BANK_MODULR', '117');
+
