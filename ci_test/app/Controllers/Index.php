@@ -51,14 +51,15 @@ class Index extends BaseController
 
     public function matchSchemeReferenceData()
     {
-        global $bankResponseExample;
+        global $bankResponseExampleByVisa;
+        global $bankResponseExampleByMastercard;
         require_once(__DIR__ . '/BankResponseExample.php');
         $request = $this->getJson();
         $bankId = $request['bank_id'] ?? 0;
         if (!empty($request['bank_response'])) {
             $bankResponse = $request['bank_response'];
         } else {
-            $bankResponse = $bankResponseExample[$bankId] ?? "";
+            $bankResponse = $bankResponseExampleByVisa[$bankId] ?? "";
         }
 
         // SRD is mean SchemeReferenceData

@@ -95,7 +95,7 @@ define('EVENT_PRIORITY_HIGH', 10);
 
 # bank
 defined('BANK_MIGRATION') || define('BANK_MIGRATION', '99');
-defined('BANK_TEST_BANK') || define('BANK_TEST_BANK', '109');
+defined('BANK_TEST_BANK') || define('BANK_TEST_BANK', '109');// Secure Trading or Trust Payments
 defined('BANK_CASHFLOW') || define('BANK_CASHFLOW', '111');
 defined('BANK_WORLDLINE') || define('BANK_WORLDLINE', '112');
 defined('BANK_ACQUIRED') || define('BANK_ACQUIRED', '113');
