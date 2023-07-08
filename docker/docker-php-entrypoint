@@ -1,0 +1,25 @@
+#!/bin/sh
+gpg --batch --yes --no-verbose --quiet --trust-model always --import /usr/local/gpg_key/pub.asc
+gpg --passphrase /usr/local/gpg_key/passphrase.txt --batch --yes --no-verbose --quiet --trust-model always --import /usr/local/gpg_key/sec.asc
+
+if [ -d "/vhosts/qahpp2.acquired.com" ];then
+	#QA
+	php /vhosts/qahpp2.acquired.com/docroot/index.php cron ws_server
+elif [ -d "/vhosts/hpp" ];then
+	#DEV
+	php /vhosts/hpp/index.php cron ws_server
+fi
+
+cd /vhosts/cron_v2/public/ && php index.php SwooleServer startQueueConsumerCoroutine &
+
+# sleep: Make sure can connect to DB
+sleep 3 && cd /vhosts/cron_v2/public/ && php index.php QaData startCoroutine &
+
+set -e
+
+# first arg is `-f` or `--some-option`
+if [ "${1#-}" != "$1" ]; then
+	set -- php-fpm "$@"
+fi
+
+exec "$@"

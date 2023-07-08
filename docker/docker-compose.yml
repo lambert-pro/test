@@ -1,0 +1,151 @@
+version: '3.7'
+
+services:
+  database:
+    container_name: database
+    image: mariadb:10.6.13
+    volumes:
+      - ${DOCKER_PATH}/mariadb/data:/var/lib/mysql
+      - ${DOCKER_PATH}/mariadb/conf.d:/etc/mysql/conf.d
+      - ${DOCKER_PATH}/mariadb/logs:/var/log/mysql
+      - ${DOCKER_PATH}/mariadb/tmp:/tmp
+    restart: always
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - "6033:3306"
+    networks:
+      acquired:
+          ipv4_address: 172.18.0.2
+    command:
+      [mysqld, --character-set-server=utf8, --collation-server=utf8_general_ci]
+
+  phpfpm:
+    container_name: phpfpm
+#     image: registry.cn-beijing.aliyuncs.com/blon/acquired:phpfpm_7.4.33
+    image: registry.cn-beijing.aliyuncs.com/blon/acquired:phpfpm_8.2.6
+    ports: 
+      - 127.0.0.1:9001:9000
+      - 127.0.0.1:8802:8802
+      - 127.0.0.1:8803:8803
+      - 127.0.0.1:8804:8804
+    volumes:
+      - ${DOCKER_PATH}/php.ini:/usr/local/etc/php/php.ini
+      - ${HOST_PATH}/Acquired/docker/qa/www.conf:/usr/local/etc/php-fpm.d/www.conf
+      - ${DOCKER_PATH}/devcrontabs:/var/spool/cron/crontabs
+      - ${DOCKER_PATH}/docker-php-entrypoint:/usr/local/bin/docker-php-entrypoint
+      - ${HOST_PATH}/Acquired/:/vhosts
+    restart: always
+    links:
+      - database
+    extra_hosts:
+      - "cron_v2:127.0.0.1"
+      - "devkeyserver.acquired.com:172.18.0.4"
+      - "devimage.acquired.com:172.18.0.4"
+      - "devapi.acquired.com:172.18.0.4"
+      - "devhpp.acquired.com:172.18.0.4"
+      - "devhpp2.acquired.com:172.18.0.4"
+      - "devpay.acquired.com:172.18.0.4"
+      - "dev-api.acquired.com:172.18.0.4"
+      - "devapp.acquired.com:172.18.0.4"
+      - "devacs.acquired.com:172.18.0.4"
+      - "devtds.acquired.com:172.18.0.4"
+      - "devfile.acquired.com:172.18.0.4"
+      - "devgpay.acquired.com:172.18.0.5"
+      - "devhpptest.acquired.com:172.18.0.4"
+      - "devapinew.acquired.com:172.18.0.4"
+      - "test.acquired.com:172.18.0.4"
+      - "tp.test.acquired.com:172.18.0.4"
+      - "ci.test.acquired.com:172.18.0.4"
+    environment:
+      - MACHINE_NAME=DEV
+    networks:
+      acquired:
+          ipv4_address: 172.18.0.3
+    logging:
+      driver: "json-file"
+      options: 
+        max-size: "100m"
+        max-file: "3"
+
+  nginx:
+    container_name: nginx
+    image: nginx:1.24.0-alpine
+    volumes:
+      - ${HOST_PATH}/Acquired/docker/qa/nginx.conf:/etc/nginx/nginx.conf
+      - ${DOCKER_PATH}/nginx/vhosts:/etc/nginx/conf.d
+      - ${HOST_PATH}/Acquired:/vhosts
+      - ${DOCKER_PATH}/nginx/ssl/ssl.crt:/etc/ssl/nginx/ssl.crt
+      - ${DOCKER_PATH}/nginx/ssl/ssl.key:/etc/ssl/nginx/ssl.key
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+      - "9006:9003"
+    links:
+      - phpfpm
+    extra_hosts:
+      - "dev-api.acquired.com:172.18.0.4"
+    networks:
+      acquired:
+          ipv4_address: 172.18.0.4
+
+  openjre:
+    container_name: openjre
+    image: openjdk:8-jre
+    volumes:
+      # php-java-bridge Service startup file
+      - ${HOST_PATH}/Acquired/google_pay/Tink1.6PHPBridge:/vhosts/google_pay
+      # Google Pay jar lib
+      - ${HOST_PATH}/Acquired/google_pay/Tink1.6PHPBridge/java_libs:/usr/java/packages/lib/ext
+    restart: always
+    ports:
+      - "127.0.0.1:8801:8801"
+    networks:
+      acquired:
+          ipv4_address: 172.18.0.5
+    # Start the service
+    command:
+      - /bin/sh
+      - -c
+      - |
+        cd /vhosts/google_pay && java -jar JavaBridge.jar SERVLET:8801 6 ./logs/google_pay.log
+
+  # docker pull redis:6.2.8-alpine
+  redis:
+    container_name: redis
+    image: redis:6.2.12-alpine
+    volumes:
+      - ${DOCKER_PATH}/redis/conf:/usr/local/etc/redis
+      - ${DOCKER_PATH}/redis/data:/data
+      - ${DOCKER_PATH}/redis/logs:/logs
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      acquired:
+          ipv4_address: 172.18.0.6
+    command: [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
+
+# docker pull redis:6.2.4-alpine
+  redis-sentinel:
+    container_name: redis-sentinel
+    image: redis:6.2.12-alpine
+    volumes:
+      - ${DOCKER_PATH}/redis/conf:/usr/local/etc/redis
+      - ${DOCKER_PATH}/redis/tmp:/tmp
+      - ${DOCKER_PATH}/redis/logs:/logs
+    restart: always
+    ports:
+      - "26379:26379"
+    networks:
+      acquired:
+          ipv4_address: 172.18.0.206
+    command: [ "redis-sentinel", "/usr/local/etc/redis/sentinel.conf" ]
+
+networks:
+  acquired:
+    ipam:
+      config:
+        - subnet: 172.18.0.0/16
+    driver: bridge
