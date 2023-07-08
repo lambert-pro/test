@@ -15,7 +15,7 @@ class Index extends BaseController
 
     public function test()
     {
-        //        $model = new LetMeTestModel();
+        //$model = new LetMeTestModel();
         /** @var \App\Models\LetMeTestModel */
         $model = model('LetMeTestModel');
         print_r($model->getList());
@@ -56,26 +56,31 @@ class Index extends BaseController
         require_once(__DIR__ . '/BankResponseExample.php');
         $request = $this->getJson();
         $bankId = $request['bank_id'] ?? 0;
+        $cardType = strtoupper($request['card_type']) ?? 'MC'; // MC or VISA
+
         if (!empty($request['bank_response'])) {
             $bankResponse = $request['bank_response'];
         } else {
-            $bankResponse = $bankResponseExampleByVisa[$bankId] ?? "";
+            if ($cardType == "MC")
+                $bankResponse = $bankResponseExampleByMastercard[$bankId] ?? "";
+            else
+                $bankResponse = $bankResponseExampleByVisa[$bankId] ?? "";
         }
 
         // SRD is mean SchemeReferenceData
         $SRD = null;
         switch ($bankId) {
             case BANK_TEST_BANK:
-                $SRD = $this->handleTsetBank($bankResponse);
+                $SRD = $this->handleTsetBank($bankResponse, $cardType);
                 break;
             case BANK_CASHFLOW:
-                $SRD = $this->handleCashflow($bankResponse);
+                $SRD = $this->handleCashflow($bankResponse, $cardType);
                 break;
             case BANK_BARCLAYCARD:
-                $SRD = $this->handleBarclaycardSRD($bankResponse);
+                $SRD = $this->handleBarclaycardSRD($bankResponse, $cardType);
                 break;
             case BANK_FINARO:
-                $SRD = $this->handleFinaro($bankResponse);
+                $SRD = $this->handleFinaro($bankResponse, $cardType);
                 break;
             default :
                 break;
@@ -83,17 +88,22 @@ class Index extends BaseController
         $this->success(['SchemeReferenceData' => $SRD]);
     }
 
-    protected function handleTsetBank($bankResponse)
+    protected function handleTsetBank($bankResponse, $cardType)
     {
         return 1;
     }
 
-    protected function handleCashflow($bankResponse)
+    protected function handleCashflow($bankResponse, $cardType)
     {
         return 1;
     }
 
-    protected function handleBarclaycardSRD($bankResponse)
+    protected function handleFinaro($bankResponse, $cardType)
+    {
+        return 1;
+    }
+
+    protected function handleBarclaycardSRD($bankResponse, $cardType)
     {
         $bankResponseArr = [];
         preg_match("/(\d{1})(\d{8})(\d{4})(\w{2})([\w]{2})(\w{1})(\w{6})?(\d{0,11})([\w\d\s:@#$%\\\*.?\[\]\/+=;~!,”’`\'\"]*)(\w*)(\d*)(\d*)(\d*)(\d{0,6})([\w\w\s]*)()?/i", $bankResponse, $match);
@@ -119,8 +129,4 @@ class Index extends BaseController
         return $adMatch[1] ?? '';
     }
 
-    protected function handleFinaro($bankResponse)
-    {
-        return 1;
-    }
 }
