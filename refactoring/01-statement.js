@@ -81,26 +81,26 @@ function statement(invoice, plays) {
  * 在此示例中，是perf、play和thisAmount这3个变量。前两个变量会被提炼后的函数使用，但不会被修改，那么我就可以将它们以参数方式传递进来。
  * 我更关心那些会被修改的变量。这里只有唯一一个——thisAmount，因此可以将它从函数中直接返回。
  * 我还可以将其初始化放到提炼后的函数里。修改后的代码如下所示。
- * @param perf
+ * @param aPerformance 好代码应能清楚地表明它在做什么，而变量命名是代码清晰的关键。
  * @param play
  * @returns {number}
  */
-function amountFor(perf, play) {
+function amountFor(aPerformance, play) {
     let result = 0
 
     switch (play.type) {
         case 'tragedy':
           result = 40000
-            if (perf.audience > 30) {
-              result += 1000 * (perf.audience - 30)
+            if (aPerformance.audience > 30) {
+              result += 1000 * (aPerformance.audience - 30)
             }
             break
         case 'comedy':
           result = 30000
-            if (perf.audience > 20) {
-              result += 10000 + 500 * (perf.audience - 20)
+            if (aPerformance.audience > 20) {
+              result += 10000 + 500 * (aPerformance.audience - 20)
             }
-          result += 300 * perf.audience
+          result += 300 * aPerformance.audience
             break
         default:
             throw new Error(`unknown type: ${play.type}`)
