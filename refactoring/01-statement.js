@@ -72,7 +72,6 @@ function statement(invoice, plays) {
  * 我更关心那些会被修改的变量。这里只有唯一一个——thisAmount，因此可以将它从函数中直接返回。
  * 我还可以将其初始化放到提炼后的函数里。修改后的代码如下所示。
  * @param aPerformance 好代码应能清楚地表明它在做什么，而变量命名是代码清晰的关键。
- * @param play
  * @returns {number}
  */
 function amountFor(aPerformance) {
