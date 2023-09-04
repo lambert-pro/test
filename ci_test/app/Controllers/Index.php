@@ -129,4 +129,45 @@ class Index extends BaseController
         return $adMatch[1] ?? '';
     }
 
+    // 冒泡排序
+    public function bubbleSort(): string
+    {
+        $post = $this->getJson();
+
+        if (empty($post) || !isset($post['string'])) {
+            $string = '5,7,2,55,1,88';
+        } else {
+            $string = $post['string'];
+        }
+
+        $array = explode(',', $string);
+        // 循环次数为 count($arr) + count($arr)-1 + count($arr)-2 + ...... + 2 + 1  => (n*n + n)/2
+        $count = 0;
+//        for ($i = 0; $i < count($array); $i++) {
+//            $count ++;
+//            for ($j = $i; $j < count($array) - 1; $j++) {
+//                $count ++;
+//                // 比较第一个数和第二个数
+//                if ($array[$i] > $array[$j+1]) {
+//                    $tmp = $array[$i];
+//                    $array[$i] = $array[$j+1];
+//                    $array[$j+1] = $tmp;
+//                }
+//            }
+//        }
+
+        for ($i = 0; $i < count($array); $i++) {
+            $count ++;
+            for ($j = $i+1; $j < count($array); $j++) {
+                $count ++;
+                // 比较第一个数和第二个数
+                if ($array[$i] > $array[$j]) {
+                    $tmp = $array[$i];
+                    $array[$i] = $array[$j];
+                    $array[$j] = $tmp;
+                }
+            }
+        }
+        return 'sort:'.implode(',', $array).'; count:'.$count;
+    }
 }

@@ -38,6 +38,9 @@ $routes->get('/', 'Index::index');
 $routes->get('/test', 'Index::test');
 $routes->post('/useValidationClass', 'Index::useValidationClass');
 $routes->post('/matchSchemeReferenceData', 'Index::matchSchemeReferenceData');
+$routes->post('/bubbleSort', 'Index::bubbleSort');
+
+
 $routes->get('/ggkPost', 'Guaguaka::ggkPost');
 $routes->get('/ggk', 'Guaguaka::index');
 $routes->get('/generateStrings', 'Guaguaka::generateStrings');
