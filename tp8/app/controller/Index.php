@@ -3,17 +3,30 @@
 namespace app\controller;
 
 use app\BaseController;
+use think\Request;
 
 class Index extends BaseController
 {
     public function index()
     {
+
+        $foo = invoke('Foo');
         echo 88;die;
-        return '<style>*{ padding: 0; margin: 0; }</style><iframe src="https://www.thinkphp.cn/welcome?version=' . \think\facade\App::version() . '" width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>';
     }
 
-    public function hello($name = 'ThinkPHP8')
+    protected $request;
+    protected $bar;
+    protected $foo;
+
+    public function __construct(Request $request, Bar $bar, Foo $foo)
     {
-        return 'hello,' . $name;
+        $this->request = $request;
+        $this->bar = $bar;
     }
+
+    public function hello($name = 'thinkphp8')
+    {
+        return 'Hello,' . $name . '！This is '. $this->request->action(). ','.$this->bar->echo();
+    }
+
 }
