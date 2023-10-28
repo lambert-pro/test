@@ -5,6 +5,6 @@
 return [
     // 指令定义
     'commands' => [
-        'integral' => 'app\command\Epubit',
+        'points' => 'app\command\Epubit',
     ]
 ];
