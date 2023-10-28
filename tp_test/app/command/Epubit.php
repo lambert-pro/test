@@ -17,23 +17,24 @@ class Epubit extends Command
         "Origin-Domain" => "www.epubit.com",
     ];
     protected array $bookIds;
+    protected string $bookPage;
     protected string $bookListUri = "https://www.epubit.com/pubcloud/content/front/portal/getUbookList?page=1&row=20";
 
     protected function configure()
     {
         // 指令配置
-        $this->setName('Integral')
-            ->setDescription('get integral from epubit.');
+        $this->setName('Points')
+            ->setDescription('get points from epubit.');
     }
 
     protected function execute(Input $input, Output $output)
     {
         $output->writeln('start get books process.');
-        $client = new Client();
-        $client->head();
+//        $client = new Client();
+//        $client->head();
 
 
-        $output->writeln('Integral');
+        $output->writeln('Points');
     }
 
 }
