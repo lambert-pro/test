@@ -300,3 +300,4 @@ function myFunction() {
 
 // 确保函数调用发生在数组定义之后
 myFunction();
+echo 1;
