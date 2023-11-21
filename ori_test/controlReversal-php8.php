@@ -24,7 +24,7 @@ class Container
         return $this->services[$serviceName]();
     }
 }
-
+echo 1;
 
 class Database
 {
@@ -33,6 +33,7 @@ class Database
         return "Connect to database.";
     }
 }
+echo 2;
 
 class Logger
 {
