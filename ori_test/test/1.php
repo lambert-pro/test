@@ -28,7 +28,7 @@ function getGrade($score)
         return 'Invalid score';
     }
 }
-// 112233
+// 123123222333
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
    $score = $_POST ['score'];
     $grade = getGrade($score);
