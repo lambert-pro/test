@@ -42,6 +42,7 @@ class Logger
     }
 }
 echo 3;
+echo 4;
 
 $container = new Container();
 //$container->register('Database', function (){return new Database();});
