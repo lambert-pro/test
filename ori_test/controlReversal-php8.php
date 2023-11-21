@@ -24,7 +24,6 @@ class Container
         return $this->services[$serviceName]();
     }
 }
-echo 1;
 
 class Database
 {
@@ -33,7 +32,6 @@ class Database
         return "Connect to database.";
     }
 }
-echo 2;
 
 class Logger
 {
@@ -43,9 +41,9 @@ class Logger
     }
 }
 
-
 echo 5;
 echo 6;
+
 
 $container = new Container();
 //$container->register('Database', function (){return new Database();});
