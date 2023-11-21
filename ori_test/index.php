@@ -302,3 +302,4 @@ function myFunction() {
 myFunction();
 
 echo 'a';
+echo 'b';
