@@ -9,4 +9,4 @@ $lock->lock();
 // 被锁住的资源，其他节点无法访问和修改
 sleep(5);
 
-$lock->unlock();
+$lock->unlock();echo 3;
