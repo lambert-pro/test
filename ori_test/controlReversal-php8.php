@@ -41,6 +41,7 @@ class Logger
         return "Logged msg:". $mag;
     }
 }
+echo 3;
 
 $container = new Container();
 //$container->register('Database', function (){return new Database();});
