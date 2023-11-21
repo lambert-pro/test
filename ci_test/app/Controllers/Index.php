@@ -8,7 +8,7 @@ use think\Exception;
 class Index extends BaseController
 {
     public function index()
-    {// test123
+    {// test
         echo 'welcome to CI ' . \CodeIgniter\CodeIgniter::CI_VERSION;
         exit;
     }
