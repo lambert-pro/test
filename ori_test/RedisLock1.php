@@ -9,4 +9,3 @@ $lock->lock();
 sleep(2);
 
 $lock->unlock();
-
