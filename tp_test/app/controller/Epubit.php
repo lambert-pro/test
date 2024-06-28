@@ -114,18 +114,22 @@ class Epubit
 //                $getLinkResponse = $client->post($getLinkUri,['headers'=>$this->header,'json'=>$getLinkRequestData]);
 //                $getLinkResponse = json_decode($loginOutBuyResponse->getBody(),true);
 
+                $isExist = Db::name('epubit')->where('name',$val['name'])->find();
+                if (!empty($isExist)){
+                    break;
+                }
+
                 $data = [
                     'name' => $val['name'],
                     'authors' => $val['authors'],
                     'vipCode' => substr($detailResponse['data']['publicationCode'],-6),
-                    //https://www.epubit.com/bookDetails?id=UBda656cdcc18a&typeName=
                     'link' => 'https://www.epubit.com/bookDetails?id='.$val['code'].'&typeName=',
-                    'book_id' => $validateIdResponse['data']['id']
+                    'book_id' => $validateIdResponse['data']['id'] ?? '',
+                    'publish_date' => $val['publishDate']
                 ];
 
                 Db::name('epubit')->insert($data);
 
-                $expectResult[] = $data;
             }
         }
         echo 'success!! use time: '.time()-$start.'s.';die;
