@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acquired Components Integration</title>
+</head>
+<body>
+<h2>支付表单</h2>
+<div id="payment-form" style="width: 300px; height: 200px;"></div>
+
+<script type="text/javascript" src="./fromLambert/v1.1/acquired.js"></script>
+<!--<script type="text/javascript" src="https://cdn.acquired.com/sdk/v1/acquired.js" integrity="sha384-+p2Thm18WpWX46t6BW9NWwl1xu/GnwWwwBm1omxkZAkGJ0ALwxOWO0yTUnfiHcok" crossorigin="anonymous"></script>-->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const acquired = new Acquired('pk_346c8a4e32dc57bc7bb7db132bd0cbfa');
+    const component = acquired.components({
+      session: '0190fc4e-a7ee-7056-a572-22d99808fc29',
+      environment: 'test'
+    });
+
+    const cardForm = component.create('cardForm', {
+      style: {
+        base: {
+          color: '#32325d',
+          fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+          fontSmoothing: 'antialiased',
+          fontSize: '16px',
+          '::placeholder': {
+            color: '#aab7c4'
+          }
+        },
+        invalid: {
+          color: '#fa755a',
+          iconColor: '#fa755a'
+        }
+      }
+    });
+    cardForm.mount('#payment-form');
+
+    document.querySelector('#submit-button').addEventListener('click', function() {
+      acquired.confirmPayment({
+        components: cardForm,
+        confirmParams: {
+          return_url: 'https://your-return-url.com'
+        }
+      }).then(function(response) {
+        if (response.isSuccess()) {
+          console.log('Payment successful');
+        } else if (response.isError()) {
+          console.error('Payment error', response.data);
+        } else if (response.isTdsPending()) {
+          console.log('3D Secure authentication required');
+        }
+      }).catch(function(error) {
+        console.error('Error during payment confirmation', error);
+      });
+    });
+  });
+</script>
+<button id="submit-button">Submit Payment</button>
+</body>
+</html>

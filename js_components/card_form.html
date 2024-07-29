@@ -1,0 +1,178 @@
+<html>
+  <head>
+     <title>My Checkout</title>
+     <style type="text/css">
+      .container{padding:30px 20px;width: 500px;border-radius: 10px;margin: 0 auto;margin-top: 100px;}
+      .container h2{text-align: center;}
+      .form-main{padding:20px;border:1px solid #ccc;border-radius:5px;background:#f2f2f2}
+      .form-main label{display:inline-block;width:150px;padding-right:10px;text-align:right;}
+      .form-main .input-title{padding-top:20px;margin-top:20px;border-top:1px solid #ccc;font-weight:bold;}
+      .button-container{text-align: center;border-radius: 10px;margin: 0 auto;}
+      .btn{padding:10px 10px;background:#f79421;color:#191b39;border:none;border-radius:5px;}
+      #payment-component{height:auto;}
+      #payment-component iframe{border:none;}
+      #submit{border-radius: 6px;cursor: pointer;padding:5px;border: 1px solid #7e8695;background: linear-gradient(1deg, #aec2e5, transparent);}
+      #error-message{margin-top:20px;width: 100%;height: 150px;border-radius: 5px;}
+     </style>
+  </head>
+  <body>
+    <div class="container">
+      <h3>Hosted Fields</h3>
+			<form id="card-form" class="form-main">
+				<div id="payment-component">
+					<!-- Elements will create form elements here -->
+				</div>
+				<button id="submit">Submit</button>
+        <!-- Display error message to your customers here -->
+        <br>
+				<textarea id="error-message" placeholder="error message" readonly="true"></textarea>				
+			</form>
+    </div>
+  </body>
+<!--   <script type="text/javascript" src="https://cdn.acquired.com/sdk/v1.1/acquired.js" integrity="sha384-uEWrid7+SjZbfDvQmobDdKO/2ofqACn5KXS9DKANcM0UfHIq+6X1ItKH+dBqcsaV" crossorigin="anonymous"></script>-->
+  <script type="text/javascript" src="./fromLambert/v1.1/acquired.js"></script>
+  <script>
+  window.onload = function(){
+		(async () => {
+        
+        const sessionId = "0190fc92-7893-71ca-aa1f-0b44d74be6be";
+
+        const acquired = new Acquired('pk_346c8a4e32dc57bc7bb7db132bd0cbfa', "error");
+        const options = {
+          session: sessionId,
+          environment: "test"
+        };
+
+        // // Set up acquired.js and components to use in checkout form, passing the client secret obtained in step 3
+        const components = acquired.components(options);
+
+        const style = {
+            base: {
+              backgroundColor: '#fff',
+              padding: '12px 16px',
+              fontFamily: 'Tahoma',
+              fontSize: '15px',
+              fontWeight: '400',
+              border: '1px solid #ccc',
+              borderColor: 'gray',
+              borderRadius: '6px'    
+            },
+            focus: {
+              color: 'green',
+              borderColor: 'green'
+            },
+            invalid: {
+              color: 'orange',
+              borderColor: 'orange'
+            },
+            placeholder: {
+              color: 'gray'
+            }
+        };
+
+        /*function Parent() {
+          this.base = true;
+        }
+
+        Parent.prototype.getBase = function(){
+          console.log('----parent----');
+          return this.base;
+        };
+
+        function Child(){
+          Parent.call(this);
+          this.invalid = false;
+        }
+
+        Child.prototype = new Parent();
+        Child.prototype.getInvalid = function(){
+          console.log("------child----");
+          return this.invalid;
+        }
+
+        let child = new Child();*/
+
+        // // Create and mount the Payment Component
+        const paymentComponent = components.create('cardForm', {
+          style: style
+        });
+        paymentComponent.mount('#payment-component');
+
+        const form = document.getElementById('card-form');
+
+        const confirmParams = {
+          payment:{
+            reference:"test33333",
+            create_card: true
+          },
+          customer: {
+              reference: "components-create-2",
+              first_name: "peter",
+              last_name: "Johnson",
+              dob: "1991-10-03",
+              ip: "127.0.0.1",
+              custom_data: "L3BheW1lbnQtbGlua3MgcGF5IGN1c3RvbV9kYXRh",
+              billing: {
+                  address: {
+                      "line_1": "Flat 7",
+                      "line_2": "Acacia Avenue",
+                      "city": "Sparsholt",
+                      "state": "aaa",
+                      "postcode": "GU31 2ZZ",
+                      "country_code": "GB"
+                  },
+                  email: "",
+                  phone: {
+                      "country_code": "",
+                      "number": ""
+                  }
+              },
+              shipping: {
+                  address_match: true,
+                  address: {
+                      "line_1": "Flat 7",
+                      "line_2": "",
+                      "city": "Sparsholt",
+                      "state": "aaa",
+                      "postcode": "GU31 2ZZ",
+                      "country_code": "GB"
+                  },
+                  email: "",
+                  phone: {
+                      "country_code": "",
+                      "number": ""
+                  }
+              }
+          },
+          webhook_url: 'https://devhpp.acquired.com/pisp/redirect',
+          redirect_url: 'https://devhpp.acquired.com/pisp/redirect'
+        }
+
+        // let str = '{get base() {cosole.log("test"); return false}}';
+        // let json = JSON.parse(JSON.stringify(str));
+        // console.log('--', typeof json);
+
+        form.addEventListener('submit', async (event) => {
+          event.preventDefault();
+          const response = await acquired.confirmPayment({
+            components,
+            confirmParams: confirmParams,
+          });
+
+          if(response.isTdsPending()){
+            window.location.href = response.data.redirect_url;
+          }
+          if(response.isSuccess()){
+            const messageContainer = document.querySelector('#error-message');
+            messageContainer.textContent = JSON.stringify(response.data);
+          }
+          if(response.isError()){
+            const messageContainer = document.querySelector('#error-message');
+            messageContainer.textContent = JSON.stringify(response.data);
+          }
+        });
+      })();
+  }
+
+  </script>
+</html>
