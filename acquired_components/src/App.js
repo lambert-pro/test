@@ -2,6 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 import MyButton from './components/MyButton.js'
 import './components/MyButton.css'
+import List from './components/List'
+import MyClick from './components/MyClick'
 
 function App() {
   return (
@@ -20,6 +22,9 @@ function App() {
           Learn React
         </a>
         <MyButton />
+        <MyButton />
+        <List />
+        <MyClick />
       </header>
     </div>
   );

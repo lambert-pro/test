@@ -9,6 +9,7 @@ function MyButton(){
         setCount(count+1)
     }
 
+    // 使用use的函数就是hook
     useEffect(() => {
         if (count % 2 == 0){
             setBgColor('yellow')
