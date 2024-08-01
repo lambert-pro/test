@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,109 +6,86 @@
 </head>
 <body>
 <h2>支付表单</h2>
-<div id="payment-form" style="width: 300px; height: 200px;"></div>
-<div><button id="submit-button">Submit Payment</button></div>
+<form id="card-form" class="form-main">
+    <div id="payment-component">
+
+    </div>
+    <button id="submit">Submit</button>
+</form>
+</body>
 
 <!--<script type="text/javascript" src="./fromLambert/v1.1/acquired.js"></script>-->
-<script type="text/javascript" src="https://cdn.acquired.com/sdk/v1/acquired.js" integrity="sha384-+p2Thm18WpWX46t6BW9NWwl1xu/GnwWwwBm1omxkZAkGJ0ALwxOWO0yTUnfiHcok" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdn.acquired.com/sdk/v1.1/acquired.js" integrity="sha384-uEWrid7+SjZbfDvQmobDdKO/2ofqACn5KXS9DKANcM0UfHIq+6X1ItKH+dBqcsaV" crossorigin="anonymous"></script>
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const acquired = new Acquired('pk_346c8a4e32dc57bc7bb7db132bd0cbfa','debug');
-    const component = acquired.components({
-      session: '01910770-a308-737a-83ea-c08426e9f869',
-      environment: 'test'
-    });
+  const acquired = new Acquired('pk_346c8a4e32dc57bc7bb7db132bd0cbfa','debug');
+  const options = {
+    session: '01910755-521a-713f-a784-8511057fa9f1',
+    environment: 'test'
+  };
+  const components = acquired.components(options)
 
-    const cardForm = component.create('cardForm', {
-      style: {
-        base: {
-          color: '#32325d',
-          fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-          fontSmoothing: 'antialiased',
-          fontSize: '16px',
-          '::placeholder': {
-            color: '#aab7c4'
-          }
+  const style = {
+    base: {
+      backgroundColor: '#fff',
+      padding: '12px 16px',
+      fontFamily: 'Tahoma',
+      fontSize: '15px',
+      fontWeight: '400',
+      border: '1px solid #ccc',
+      borderColor: 'gray',
+      borderRadius: '6px'
+    },
+    focus: {
+      color: 'green',
+      borderColor: 'green'
+    },
+    invalid: {
+      color: 'orange',
+      borderColor: 'orange'
+    },
+    placeholder: {
+      color: 'gray'
+    }
+  };
+  const paymentComponent = components.create('cardForm', {
+    style: style
+  });
+  paymentComponent.mount('#payment-component');
+
+  const confirmParams = {
+    customer: {
+      reference: 'cfe19f01-6fe5-4c82-be05-0f66054efde1',
+      billing: {
+        address: {
+          line_1: 'Flat 1',
+          line_2: '152 Aldgate Drive',
+          city: 'London',
+          postcode: 'E1 7RT',
+          country_code: 'GB'
         },
-        invalid: {
-          color: '#fa755a',
-          iconColor: '#fa755a'
-        }
-      }
-    });
-    cardForm.mount('#payment-form');
-    const confirmParams = {
-      payment:{
-        reference:"test33333",
-        create_card: true
-      },
-      customer: {
-        reference: "components-create-2",
-        first_name: "peter",
-        last_name: "Johnson",
-        dob: "1991-10-03",
-        ip: "127.0.0.1",
-        custom_data: "L3BheW1lbnQtbGlua3MgcGF5IGN1c3RvbV9kYXRh",
-        billing: {
-          address: {
-            "line_1": "Flat 7",
-            "line_2": "Acacia Avenue",
-            "city": "Sparsholt",
-            "state": "aaa",
-            "postcode": "GU31 2ZZ",
-            "country_code": "GB"
-          },
-          email: "",
-          phone: {
-            "country_code": "",
-            "number": ""
-          }
+        email: 'ejohnson@acquired.com',
+        phone: {
+          country_code: '44',
+          number: '2039826580'
         },
         shipping: {
-          address_match: true,
-          address: {
-            "line_1": "Flat 7",
-            "line_2": "",
-            "city": "Sparsholt",
-            "state": "aaa",
-            "postcode": "GU31 2ZZ",
-            "country_code": "GB"
-          },
-          email: "",
-          phone: {
-            "country_code": "",
-            "number": ""
-          }
-        }
-      },
-      webhook_url: 'https://devhpp.acquired.com/pisp/redirect',
-      redirect_url: 'https://devhpp.acquired.com/pisp/redirect'
+          address_match: true
+        }, webhook_url: 'https://www.yourdomain.com/webhook'
+      }
     }
+  }
 
-    // document.querySelector('#submit-button').addEventListener('#submit-button', async (event) => {
-    //   console.log(123)
-    //   event.preventDefault();
-    //   const response = await acquired.confirmPayment({
-    //     component, confirmParams: confirmParams,
-    //   })
-    //
-    //   console.log(1111)
-    //   console.log(response)
-    // })
+  const form = document.getElementById('card-form')
+  form.addEventListener('submit', async (event) => {
+    console.log(123123)
+    event.preventDefault();
+    const response = await acquired.confirmPayment({
+      components, confirmParams: confirmParams,
+    })
 
-    document.querySelector('#submit-button').addEventListener('click', async (event) => {
-      console.log(123)
-      event.preventDefault();
-      const response = await acquired.confirmPayment({
-        component, confirmParams: confirmParams,
-      })
+    console.log(111)
+    console.log(response)
+  })
 
-      console.log(1111)
-      console.log(response)
-
-    });
-  });
 </script>
-
-</body>
 </html>
