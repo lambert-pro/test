@@ -12,7 +12,7 @@
     </style>
 </head>
 <body>
-<h2>支付表单</h2>
+<h2 id="title">支付表单</h2>
 <form id="card-form" class="form-main">
     <div id="payment-component"></div>
     <button type="submit" id="submit">Submit</button>
@@ -20,7 +20,7 @@
 
 <script src="https://cdn.acquired.com/sdk/v1.1/acquired.js" integrity="sha384-uEWrid7+SjZbfDvQmobDdKO/2ofqACn5KXS9DKANcM0UfHIq+6X1ItKH+dBqcsaV" crossorigin="anonymous"></script>
 <script>
-    const sessionId = '019111a1-d982-707f-b85e-c6fab074766c';
+    const sessionId = '0191122e-fe95-7399-84a1-fef007b777a0';
     const publicKey = 'pk_346c8a4e32dc57bc7bb7db132bd0cbfa';
     const confirmParams = {
         customer: {
@@ -86,6 +86,18 @@
             }
         });
     });
+</script>
+
+<script>
+  const title =  document.getElementById('title')
+  title.addEventListener('mouseover',function (){
+      document.getElementById('title').style.backgroundColor = 'red';
+    })
+
+  title.addEventListener('mouseout',function (){
+    document.getElementById('title').style.backgroundColor = '';
+  })
+
 </script>
 </body>
 </html>
