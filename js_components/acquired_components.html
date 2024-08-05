@@ -9,6 +9,7 @@
         .form-main { padding: 20px; border: 1px solid #ccc; border-radius: 5px; background: #f2f2f2; }
         #submit { cursor: pointer; padding: 10px; border: none; border-radius: 5px; background: #007bff; color: white; }
         #submit:hover { background: #0056b3; }
+        textarea {width: 500px;height: 300px; margin-top: 10px;}
     </style>
 </head>
 <body>
@@ -17,10 +18,13 @@
     <div id="payment-component"></div>
     <button type="submit" id="submit">Submit</button>
 </form>
+<div>
+    <textarea id="response" readonly ></textarea>
+</div>
 
 <script src="https://cdn.acquired.com/sdk/v1.1/acquired.js" integrity="sha384-uEWrid7+SjZbfDvQmobDdKO/2ofqACn5KXS9DKANcM0UfHIq+6X1ItKH+dBqcsaV" crossorigin="anonymous"></script>
 <script>
-    const sessionId = '0191122e-fe95-7399-84a1-fef007b777a0';
+    const sessionId = '019121ba-4ccb-7054-abad-1b1f6e59d4dc';
     const publicKey = 'pk_346c8a4e32dc57bc7bb7db132bd0cbfa';
     const confirmParams = {
         customer: {
@@ -73,16 +77,24 @@
         const acquired = new Acquired(publicKey, 'debug');
         const options = { session: sessionId, environment: 'test' };
         const components = acquired.components(options);
-        const paymentComponent = components.create('cardForm', { style });
+
+        // card form
+        // const paymentComponent = components.create('cardForm', { style });
+
+        //payment form
+        const paymentComponent = components.create('payment', { style });
+
         paymentComponent.mount('#payment-component');
 
         document.getElementById('card-form').addEventListener('submit', async (event) => {
             event.preventDefault();
             try {
                 const response = await acquired.confirmPayment({ components, confirmParams });
+                document.getElementById('response').value = JSON.stringify(response, null, 2);
                 console.log('Payment response:', response);
             } catch (error) {
-                console.error('Payment error:', error);
+              document.getElementById('response').value = `Error: ${error.message}`;
+              console.error('Payment error:', error);
             }
         });
     });
