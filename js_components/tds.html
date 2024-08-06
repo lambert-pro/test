@@ -24,7 +24,7 @@
 
 <script src="https://cdn.acquired.com/sdk/v1.1/acquired.js" integrity="sha384-uEWrid7+SjZbfDvQmobDdKO/2ofqACn5KXS9DKANcM0UfHIq+6X1ItKH+dBqcsaV" crossorigin="anonymous"></script>
 <script>
-  const sessionId = '0191259f-2b3a-722a-a8f6-5c14b6c19c4d';
+  const sessionId = '019126c2-d79b-71bf-84c6-6be93608965b';
   const publicKey = 'pk_346c8a4e32dc57bc7bb7db132bd0cbfa';
   const confirmParams = {
     customer: {
@@ -88,8 +88,9 @@
         document.getElementById('response').value = JSON.stringify(response, null, 2);
         console.log('Payment response:', response);
 
-        if(response.isTdsPending()){
-          Window.location.href = response.data.redirect_url;
+        if(response.isTdsPending() ){
+          console.log(1111,response.data);
+          window.location.href = response.data.redirect_url;
         }
         if(response.isSuccess()){
           const messageContainer = document.querySelector('#error-message');
