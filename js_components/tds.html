@@ -24,7 +24,7 @@
 
 <script src="https://cdn.acquired.com/sdk/v1.1/acquired.js" integrity="sha384-uEWrid7+SjZbfDvQmobDdKO/2ofqACn5KXS9DKANcM0UfHIq+6X1ItKH+dBqcsaV" crossorigin="anonymous"></script>
 <script>
-  const sessionId = '0191259b-5b9c-72ac-bd11-8522a13ede03';
+  const sessionId = '0191259f-2b3a-722a-a8f6-5c14b6c19c4d';
   const publicKey = 'pk_346c8a4e32dc57bc7bb7db132bd0cbfa';
   const confirmParams = {
     customer: {
@@ -87,6 +87,20 @@
         const response = await acquired.confirmPayment({ components, confirmParams });
         document.getElementById('response').value = JSON.stringify(response, null, 2);
         console.log('Payment response:', response);
+
+        if(response.isTdsPending()){
+          Window.location.href = response.data.redirect_url;
+        }
+        if(response.isSuccess()){
+          const messageContainer = document.querySelector('#error-message');
+          messageContainer.textContent = JSON.stringify(response.data);
+        }
+        if(response.isError()) {
+          acquired.showComponentErrorMessage('.component-error', response.data);
+          const messageContainer = document.querySelector('#error-message');
+          messageContainer.textContent = JSON.stringify(response.data);
+        }
+
       } catch (error) {
         document.getElementById('response').value = `Error: ${error.message}`;
         console.error('Payment error:', error);

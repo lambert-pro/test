@@ -13,8 +13,8 @@
     </style>
 </head>
 <body>
-<h2 id="title">card form 支付表单</h2>
-<form id="card-form" class="form-main">
+<h2 id="title">payment form 支付表单</h2>
+<form id="payment-form" class="form-main">
     <div id="payment-component"></div>
     <button type="submit" id="submit">Submit</button>
 </form>
@@ -24,7 +24,7 @@
 
 <script src="https://cdn.acquired.com/sdk/v1.1/acquired.js" integrity="sha384-uEWrid7+SjZbfDvQmobDdKO/2ofqACn5KXS9DKANcM0UfHIq+6X1ItKH+dBqcsaV" crossorigin="anonymous"></script>
 <script>
-  const sessionId = '0191259b-5b9c-72ac-bd11-8522a13ede03';
+  const sessionId = '01912595-7132-70d1-a66c-acf71565d69f';
   const publicKey = 'pk_346c8a4e32dc57bc7bb7db132bd0cbfa';
   const confirmParams = {
     customer: {
@@ -77,11 +77,11 @@
     const acquired = new Acquired(publicKey, 'debug');
     const options = { session: sessionId, environment: 'test' };
     const components = acquired.components(options);
-    const paymentComponent = components.create('cardForm', { style });
+    const paymentComponent = components.create('payment', { style });
 
     paymentComponent.mount('#payment-component');
 
-    document.getElementById('card-form').addEventListener('submit', async (event) => {
+    document.getElementById('payment-form').addEventListener('submit', aseync (event) => {
       event.preventDefault();
       try {
         const response = await acquired.confirmPayment({ components, confirmParams });
