@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Acquired } from './assets/js/Acquired.js'
 
 function App() {
-  const sessionId = '01913153-410f-72a6-b31e-29403fe87348';
+  const sessionId = '019131f6-29b5-7067-bfd9-c2b87a46f239';
   const publicKey = 'pk_346c8a4e32dc57bc7bb7db132bd0cbfa';
   const confirmParams = {
     customer: {
@@ -121,9 +121,14 @@ function App() {
   }, [formContent, formType]);
 
   const handleButtonClick = (type) => {
-    let formHtml = '';
     setFormType(type);
+    let formHtml = getFormHtml(type);
+    setFormContent(''); // 先清空内容
+    setTimeout(() => setFormContent(formHtml), 0); // 设置新的内容
+  };
 
+  function getFormHtml(type){
+    let formHtml;
     if (type === 'card') {
       formHtml = `<h2 id="title">${type} 支付表单</h2>
       <form id="${type}-form" className="form-main">
@@ -152,11 +157,8 @@ function App() {
         </div>
       </form>`;
     }
-
-    setFormContent(''); // 先清空内容
-    setTimeout(() => setFormContent(formHtml), 0); // 设置新的内容
-  };
-
+    return formHtml;
+  }
 
   return (<div className="App">
       <header className="App-header">
