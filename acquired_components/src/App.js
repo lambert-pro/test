@@ -1,7 +1,6 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 import { Acquired } from './assets/js/Acquired.js'
-// import { Acquired } from "https://cdn.acquired.com/sdk/v1.1/acquired.js"
 
 function App() {
   const sessionId = '01913153-410f-72a6-b31e-29403fe87348';
