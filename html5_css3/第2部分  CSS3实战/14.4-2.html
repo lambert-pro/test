@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style type="text/css">
+        div::selection
+        {
+            color:white;
+            background-color:red;            
+        }
+        p::selection
+        {
+            color:white;
+            background-color:orange;
+        }
+        /*兼容Firefox浏览器*/
+        div::-moz-selection
+        {
+            color:white;
+            background-color:red;            
+        }
+        p::-moz-selection
+        {
+            color:white;
+            background-color:orange;
+        }
+    </style>
+</head>
+<body>
+    <div>绿叶学习网，给你初恋般的感觉。</div>
+    <p>绿叶学习网，给你初恋般的感觉。</p>
+</body>
+</html>

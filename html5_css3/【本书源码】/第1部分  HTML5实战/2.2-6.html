@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        window.onload = function () {
+            var input = document.getElementsByTagName("input")[0];
+            var output = document.getElementsByTagName("output")[0];
+
+            //页面一载入，获取color的初始值
+            output.value = input.value;
+            //选择颜色，改变output值
+            input.onchange = function () {
+                output.value = input.value;
+            };
+        }
+    </script>
+</head>
+<body>
+    <form method="post">
+        <input type="color" value="#000000" />
+        <output></output>
+    </form>
+</body>
+</html>

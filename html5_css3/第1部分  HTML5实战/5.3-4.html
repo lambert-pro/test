@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style type="text/css">
+        #box
+        {
+            width:150px;
+            height:150px;
+            border:1px solid silver;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var oBox = document.getElementById("box");
+            var oContent = document.getElementById("content");
+
+            //阻止默认行为
+            oBox.ondragover = function (e) {
+                e.preventDefault();
+            };
+
+            //添加ondrop事件
+            oBox.ondrop = function (e) {
+                e.preventDefault();
+
+                //获取File对象
+                var file = e.dataTransfer.files[0];
+                var reader = new FileReader();
+                reader.readAsDataURL(file);
+
+                reader.onload = function () {
+                    var oImg = document.createElement("img");
+                    //设置图片src为this.result
+                    oImg.src = this.result;
+                    oImg.style.width = "150px";
+                    oImg.style.height = "150px";
+                    oBox.appendChild(oImg);
+                };
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="box"></div>
+</body>
+</html>

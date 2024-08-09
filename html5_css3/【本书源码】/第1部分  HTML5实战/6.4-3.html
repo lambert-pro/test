@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        //定义对象仓库的数据
+        var data = [{
+            id: 1001,
+            name: "Byron",
+            age: 24
+        }, {
+            id: 1002,
+            name: "Frank",
+            age: 30
+        }, {
+            id: 1003,
+            name: "Aaron",
+            age: 26
+        }];
+        //一定要更新版本号，以便触发onupgradeneeded事件
+        var request = window.indexedDB.open("mydb", 2.0);
+        request.onerror = function () {
+            console.log("创建或打开数据库失败！");
+        };
+        request.onsuccess = function (e) {
+            console.log("创建或打开数据库成功！");
+        };
+        request.onupgradeneeded = function (e) {
+            var db = e.target.result;
+            //如果数据库不包含"student"这张表，则创建新表
+            if (!db.objectStoreNames.contains("students")) {
+                var store = db.createObjectStore("students", { keyPath: "id" });
+                for (var i = 0; i < data.length; i++) {
+                    var addRequest = store.add(data[i]);
+                    addRequest.onerror = function () {
+                        console.log("添加数据失败！")
+                    };
+                    addRequest.onsuccess = function () {
+                        console.log("添加数据成功！")
+                    };
+                }
+            }
+        };
+    </script>
+</head>
+<body>
+</body>
+</html>

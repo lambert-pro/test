@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style type="text/css">
+        p{color:red;}
+    </style>
+    <script>
+        window.onload=function(){
+            var oUser = document.getElementById("user");
+            var oPwd = document.getElementById("pwd");
+            var oBtn = document.getElementById("btn");
+            var oMes = document.getElementById("mes");
+
+            //页面一打开时，使用getItem()方法获取数据
+            oMes.innerHTML = "账号：" + sessionStorage.getItem("user") + "<br/>密码：" + sessionStorage.getItem("pwd");
+
+            //点击按钮后，使用setItem()方法设置数据
+            oBtn.onclick = function(){
+                sessionStorage.setItem("user",oUser.value);
+                sessionStorage.setItem("pwd", oPwd.value);
+                oMes.innerHTML="账号：" + oUser.value + "<br/>密码：" + oPwd.value;
+            };
+        }
+    </script>
+</head>
+<body>
+    账号：<input id="user" type="text"><br/>
+    密码：<input id="pwd" type="text">
+    <input id="btn" type="button" value="设置" />
+    <p id="mes" style="color:red;"></p>
+</body>
+</html>

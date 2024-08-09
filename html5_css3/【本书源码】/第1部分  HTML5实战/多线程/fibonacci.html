@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        var worker = new Worker("fibonacci.js");
+        //10
+        worker.postMessage(10);
+        worker.onmessage = function(e){
+            console.log(e.data);
+        };
+        //20
+        worker.postMessage(20);
+        worker.onmessage = function(e){
+            console.log(e.data);
+        };
+        //30
+        worker.postMessage(30);
+        worker.onmessage = function(e){
+            console.log(e.data);
+        };
+    </script>
+</head>
+<body>
+</body>
+</html>

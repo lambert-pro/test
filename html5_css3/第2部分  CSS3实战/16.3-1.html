@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style type="text/css">
+        *{padding:0;margin:0;}
+        ul
+        {
+            display:inline-block;
+            list-style-type:none;
+            width:200px;
+        }
+        li
+        {
+            height:30px;
+            line-height:30px;
+            font-size:20px;
+            font-weight:bold;
+            text-align:center;
+        }
+        /*第1个li，透明度为1.0*/
+        li:first-child
+        {
+            background-color:rgba(255,0,255,1.0);
+        }
+        /*第2个li，透明度为0.6*/
+        li:nth-child(2)
+        {
+            background-color:rgba(255,0,255,0.6);
+        }
+        /*第3个li，透明度为0.3*/
+        li:last-child
+        {
+            background-color:rgba(255,0,255,0.3);
+        } 
+    </style>
+</head>
+<body>
+    <ul>
+        <li>绿叶学习网</li>
+        <li>绿叶学习网</li>
+        <li>绿叶学习网</li>
+    </ul>
+</body>
+</html>

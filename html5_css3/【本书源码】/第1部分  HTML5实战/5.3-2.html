@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        window.onload = function () {
+            var oFile = document.getElementById("file");
+            oFile.onchange = function () {
+                //获取第1个文件
+                var file = oFile.files[0];
+
+                //将图片转换为base64
+                var reader = new FileReader();
+                reader.readAsDataURL(file);
+
+                reader.onload = function () {
+                    //添加图片到页面中
+                    var oImg = document.createElement("img");
+                    oImg.src = this.result;
+                    document.body.appendChild(oImg);
+                };
+            };
+        }
+    </script>
+</head>
+<body>
+    <input id="file" type="file" /><br/>
+</body>
+</html>

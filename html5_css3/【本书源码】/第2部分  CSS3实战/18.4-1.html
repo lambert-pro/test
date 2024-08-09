@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style type="text/css">
+        body
+        {
+            font-family:微软雅黑;
+            font-size:14px;
+        }
+        #view
+        {
+            display:inline-block;
+            width:400px;
+            padding:15px;
+            margin-top:15px;
+            font-size:15px;
+            border:15px dashed silver;
+            background-image:url(img/judy.png);
+            background-origin:border-box;
+            background-repeat:no-repeat;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var ckb1 = document.getElementById("ckb1");
+            var ckb2 = document.getElementById("ckb2");
+            var ckb3 = document.getElementById("ckb3");
+            var view = document.getElementById("view");
+
+            ckb1.onchange = function () {
+                view.style.backgroundClip = "border-box";
+            };
+            ckb2.onchange = function () {
+                view.style.backgroundClip = "padding-box";
+            };
+            ckb3.onchange = function () {
+                view.style.backgroundClip = "content-box";
+            };
+        }
+    </script>
+</head>
+<body>
+    <div id="select">
+        background-clip：
+        <input id="ckb1" name="group" type="radio" value="border-box" checked="checked"/><label for="ckb1">border-box</label>
+        <input id="ckb2" name="group" type="radio" value="padding-box"/><label for="ckb2">padding-box</label>
+        <input id="ckb3" name="group" type="radio" value="content-box"/><label for="ckb3">content-box</label>
+    </div>
+    <div id="view">绿叶学习网，绿叶学习网，绿叶学习网，绿叶学习网，绿叶学习网，绿叶学习网，绿叶学习网，绿叶学习网，绿叶学习网，绿叶学习网，绿叶学习网，绿叶学习网，绿叶学习网，绿叶学习网，绿叶学习网，绿叶学习网，绿叶学习网，绿叶学习网，绿叶学习网，绿叶学习网，绿叶学习网，绿叶学习网，绿叶学习网，绿叶学习网，绿叶学习网，绿叶学习网。</div>
+</body>
+</html>

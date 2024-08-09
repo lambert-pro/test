@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style type="text/css">
+        /*设置div公共样式*/
+        div
+        {
+            width:120px;
+            height:80px;
+            line-height:80px;
+            margin-top:10px;
+            text-align:center;
+            color:white;
+        }
+        #div1{background:-webkit-radial-gradient(circle closest-side, orange, blue);}
+        #div2{background:-webkit-radial-gradient(circle closest-corner, orange, blue);}
+        #div3{background:-webkit-radial-gradient(circle farthest-side, orange, blue);}
+        #div4{background:-webkit-radial-gradient(circle farthest-corner, orange, blue);}
+    </style>
+</head>
+<body>
+    <div id="div1">closest-side</div>
+    <div id="div2">closest-corner</div>
+    <div id="div3">farthest-side</div>
+    <div id="div4">farthest-corner
+    </div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        window.onload = function () {
+            var oVideo = document.getElementsByTagName("video")[0];
+            var oBtn = document.getElementById("btn");
+            var flag = 1;
+
+            oBtn.onclick = function () {
+                if (flag == 1) {
+                    oVideo.muted = true;
+                    oBtn.value = "开启";
+                    flag = 0;
+                } else {
+                    oVideo.muted = false;
+                    oBtn.value = "静音";
+                    flag = 1;
+                }
+            };
+        }
+    </script>
+</head>
+<body>
+    <video width="320" height="240" src="media/movie.mp4" autoplay></video><br/>
+    <input id="btn" type="button" value="静音" />
+</body>
+</html>

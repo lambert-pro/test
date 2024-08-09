@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style type="text/css">
+        #container
+        {
+            position:relative;
+            width:800px;
+            height:600px;
+            margin:0 auto;
+            background-image:url(img/haizeiBg.png);
+        }
+        img
+        {
+            position:absolute;
+            padding:10px;
+            background-color:white;
+        }
+        img:hover
+        {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        #container img:first-child
+        {
+            left:100px; top:60px; transform:rotate(30deg);
+        }
+        #container img:nth-child(2)
+        {
+            left:300px; top:60px; transform:rotate(-30deg);
+        }
+        #container img:nth-child(3)
+        {
+            left:500px; top:60px; transform:rotate(30deg);
+        }
+        #container img:nth-child(4)
+        {
+            left:100px; top:240px; transform:rotate(-30deg);
+        }
+        #container img:nth-child(5)
+        {
+            left:300px; top:240px; transform:rotate(0);
+        }
+        #container img:last-child
+        {
+            left:500px; top:240px;transform:rotate(30deg);
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <img src="img/haizei1.png" alt=""/>
+        <img src="img/haizei2.png" alt=""/>
+        <img src="img/haizei3.png" alt=""/>
+        <img src="img/haizei4.png" alt=""/>
+        <img src="img/haizei5.png" alt=""/>
+        <img src="img/haizei6.png" alt=""/>
+    </div>
+</body>
+</html>

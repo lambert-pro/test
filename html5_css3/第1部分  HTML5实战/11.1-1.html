@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        window.onload = function () {
+            var oBtn = document.getElementById("btn");
+
+            oBtn.onclick = function () {
+                //如果用户同意，则创建一个提示框
+                if (Notification.permission == "granted") {
+                    //定义标题
+                    var title = "Welcome";
+                    //定义选项
+                    var options = {
+                        body: "欢迎来到绿叶学习网！",
+                        icon: "img/favicon.ico"
+                    }
+                    var notification = new Notification(title, options);
+                }
+            };
+        }
+    </script>
+</head>
+<body>
+    <input id="btn" type="button" value="查看消息" />
+</body>
+</html>

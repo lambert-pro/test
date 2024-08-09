@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        window.onload = function () {
+            var input = document.getElementsByTagName("input")[0];
+            var output = document.getElementsByTagName("output")[0];
+
+            //获取range的初始值
+            output.value = input.value;
+            //拖动滑动条，改变output值
+            input.onchange = function () {
+                output.value = input.value;
+            };
+        }
+    </script>
+</head>
+<body>
+    <form method="post">
+        <input type="range" min="-10" max="10" step="5" value="-10" />
+        <output></output>
+    </form>
+</body>
+</html>

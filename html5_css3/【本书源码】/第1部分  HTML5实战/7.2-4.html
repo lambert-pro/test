@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        window.onload = function () {
+            var oVideo = document.getElementsByTagName("video")[0];
+            var oAdd = document.getElementById("add");
+            var oReduce = document.getElementById("reduce");
+
+            oAdd.onclick = function () {
+                oVideo.volume += 0.2;
+            };
+            oReduce.onclick = function () {
+                oVideo.volume -= 0.2;
+            };
+        }
+    </script>
+</head>
+<body>
+    <video width="320" height="240" src="media/movie.mp4" autoplay></video><br/>
+    <input id="add" type="button" value="增大" />
+    <input id="reduce" type="button" value="减小" />
+</body>
+</html>

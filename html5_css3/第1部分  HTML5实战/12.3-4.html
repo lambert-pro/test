@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html> 
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        function $$(id) {
+            return document.getElementById(id);
+        }
+        window.onload = function () {
+            var cnv = $$("canvas");
+            var cxt = cnv.getContext("2d");
+
+            cxt.moveTo(50, 100);
+            cxt.lineTo(50, 50);
+            cxt.lineTo(150, 50);
+            cxt.lineTo(150, 100);
+            cxt.lineTo(50, 100);
+            cxt.stroke();
+        }
+    </script>
+</head>
+<body>
+    <canvas id="canvas" width="200" height="150" style="border:1px dashed gray;"></canvas>
+</body>
+</html>

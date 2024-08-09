@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        window.onload = function () {
+            var oTxt = document.getElementById("txt");
+            var oBtn = document.getElementById("btn");
+            var oDiv = document.getElementById("container");
+
+            oBtn.onclick = function () {
+                //Blob中数据为“文字”，默认编码为“utf-8”
+                var text = oTxt.value;
+                var blob = new Blob([text], { type: 'text/plain' });
+
+                //通过createObjectURL()方法创建文字链接
+                var oA = document.createElement("a");
+                var url = window.URL.createObjectURL(blob);
+                oA.download = "download";
+                oA.href = url;
+
+                //添加元素
+                document.body.appendChild(oA);
+
+                //触发点击
+                oA.click();
+
+                //移除元素
+                document.body.removeChild(oA);
+            };
+        }
+    </script>
+</head>
+<body>
+    <textarea id="txt" cols="30" rows="10"></textarea><br/>
+    <input id="btn" type="button" value="下载文件" />
+</body>
+</html>

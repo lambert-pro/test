@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <!--用于实现页面自适应于手机-->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title></title>
+    <script>
+        window.onload = function () {
+            //获取DOM
+            var oBtn = document.getElementById("btn");
+            var oContent = document.getElementById("content");
+
+            //点击按钮后，获取经度和纬度
+            oBtn.onclick = function () {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    oContent.innerHTML = "经度：" + position.coords.longitude
+                                       + "<br/>纬度：" + position.coords.latitude;
+                });
+            };
+        }
+    </script>
+</head>
+<body>
+    <input id="btn" type="button" value="获取位置" />
+    <p id="content"></p>
+</html>

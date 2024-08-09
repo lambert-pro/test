@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        window.onload = function () {
+            var oVideo = document.getElementsByTagName("video")[0];
+            var oPlay = document.getElementById("play");
+            var oPause = document.getElementById("pause");
+
+            oPlay.onclick = function () {
+                oVideo.play();
+            };
+            oPause.onclick = function () {
+                oVideo.pause();
+            };
+        }
+    </script>
+</head>
+<body>
+    <video width="320" height="240" src="media/movie.mp4"></video><br/>
+    <input id="play" type="button" value="播放" />
+    <input id="pause" type="button" value="暂停"/>
+</body>
+</html>

@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        var request = window.indexedDB.open("mydb",2.0);
+        request.onerror = function(){
+            console.log("创建或打开数据库失败！");
+        };
+        request.onsuccess = function(e){
+            console.log("创建或打开数据库成功！");
+            var db = e.target.result;
+            var transaction = db.transaction(["students"],"readwrite");
+            var store = transaction.objectStore("students");
+            var dataRequest = store.delete(1001);
+            dataRequest.onerror = function(){
+                console.log("删除数据失败！");
+            };
+            dataRequest.onsuccess = function(){
+                console.log("删除数据成功！");
+            };
+        };
+    </script>
+</head>
+<body>
+</body>
+</html>

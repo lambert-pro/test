@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        //定义新的数据
+        var data = [{
+            id: 1004,
+            name: "helicopter",
+            age: 25
+        }, {
+            id: 1005,
+            name: "winne",
+            age: 21
+        }, {
+            id: 1006,
+            name: "yuki",
+            age: 22
+        }];
+        var request = window.indexedDB.open("mydb", 2.0);
+        request.onerror = function () {
+            console.log('创建或打开数据库失败！');
+        };
+        request.onsuccess = function (e) {
+            console.log("创建或打开数据库成功！");
+            var db = e.target.result;
+            //开启事务
+            var transaction = db.transaction(["students"], "readwrite");
+            //连接对象仓库
+            var store = transaction.objectStore("students");
+            //添加新数据
+            for (var i = 0; i < data.length; i++) {
+                var dataRequest = store.add(data[i]);
+                dataRequest.onerror = function () {
+                    console.log("添加数据失败！");
+                };
+                dataRequest.onsuccess = function () {
+                    console.log("添加数据成功！");
+                };
+            }
+        };
+    </script>
+</head>
+<body>
+</body>
+</html>

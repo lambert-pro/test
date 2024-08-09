@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style type="text/css">
+        body{font-family:微软雅黑;font-size:14px;}
+        #view
+        {
+            display:inline-block;
+            width:160px;
+            height:160px;
+            background-color:#F1F1F1;
+            border:1px solid gray;
+            overflow-x:visible;
+        }
+        #circle
+        {
+            width:200px;
+            height:200px;
+            background-color:Red;
+            border-radius:100px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var oRadio = document.getElementsByName("group");
+            var oDiv = document.getElementById("view");
+
+            for (var i = 0; i < oRadio.length; i++) {
+                oRadio[i].onclick = function () {
+                    if (this.checked) {
+                        oDiv.style.overflowX = this.value;
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="select">
+        <h3>overflow-X取值：</h3>
+        <label><input name="group" type="radio" value="visible" checked="checked"/><label for="ckb1">visible</label>
+        <label><input name="group" type="radio" value="hidden"/><label for="ckb2">hidden</label>
+        <label><input name="group" type="radio" value="scroll"/><label for="ckb3">scroll</label>
+        <label><input name="group" type="radio" value="auto"/><label for="ckb4">auto</label>
+    </div>
+    <div id="view">
+        <div id="circle"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        window.onload = function () {
+            var oVideo = document.getElementsByTagName("video")[0];
+            var oRange = document.getElementById("range");
+            var oCurrentTime = document.getElementsByClassName("currentTime")[0];
+            var oDuration = document.getElementsByClassName("duration")[0];
+
+            //初始化两个时间
+            oDuration.innerHTML = getTime(oVideo.duration);
+            oCurrentTime.innerHTML = "00:00:00";
+
+
+            //初始化进度条的值
+            oRange.min = 0;
+            oRange.max = oVideo.duration;
+            oRange.value = 0;
+
+            //保持拖动条和video的时间同步
+            oRange.onchange = function () {
+                oVideo.currentTime = oRange.value;
+                oCurrentTime.innerHTML = getTime(oVideo.currentTime);
+            };
+            oVideo.addEventListener("timeupdate", function () {
+                oRange.value = oVideo.currentTime;
+                oCurrentTime.innerHTML = getTime(oVideo.currentTime);
+            }, false);
+
+            //定义一个转换为“00:00:00”格式时间的函数
+            function getTime(time) {
+                var hours = parseInt(time / 3600);
+                var minutes = parseInt((time - hours * 3600) / 60);
+                var seconds = parseInt(time - hours * 3600 - minutes * 60);
+                if (hours < 10) {
+                    hours = "0" + hours;
+                }
+                if (minutes < 10) {
+                    minutes = "0" + minutes;
+                }
+                if (seconds < 10) {
+                    seconds = "0" + seconds;
+                }
+                var result = hours + ":" + minutes + ":" + seconds;
+                return result;
+            }
+        }
+    </script>
+</head>
+<body>
+    <video width="320" height="240" src="media/movie.mp4" autoplay></video><br/>
+    <input id="range" type="range" /><br/>
+    <div class="time">
+        <span class="currentTime"></span>/
+        <span class="duration"></span>
+    </div>
+</body>
+</html>

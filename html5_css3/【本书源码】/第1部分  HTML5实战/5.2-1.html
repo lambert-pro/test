@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        window.onload = function () {
+            //获取FileList对象
+            var oFile = document.getElementById("file");
+            oFile.onchange = function () {
+                //获取第1个文件，即File对象
+                var file = oFile.files[0];
+                console.log("图片名称为：" + file.name);
+                console.log("图片大小为：" + file.size + "B");
+                console.log("图片类型为：" + file.type);
+                console.log("修改时间为：" + file.lastModifiedDate);
+            };
+        }
+    </script>
+</head>
+<body>
+    <input id="file" type="file" accept="image/*" multiple />
+</body>
+</html>

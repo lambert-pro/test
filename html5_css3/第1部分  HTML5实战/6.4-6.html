@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        var request = window.indexedDB.open("mydb", 2.0);
+        request.onerror = function () {
+            console.log("创建或打开数据库失败！");
+        };
+        request.onsuccess = function (e) {
+            console.log("创建或打开数据库成功");
+            var db = e.target.result;
+            var transaction = db.transaction(["students"], "readwrite");
+            var store = transaction.objectStore("students");
+
+            var dataRequest = store.get(1002);
+            dataRequest.onerror = function () {
+                alert("获取数据失败");
+            };
+            dataRequest.onsuccess = function () {
+                if (this.result == undefined) {
+                    console.log("没有符合条件的数据");
+                } else {
+                    console.log(this.result);
+                }
+            };
+        };
+    </script>
+</head>
+<body>
+</body>
+</html>

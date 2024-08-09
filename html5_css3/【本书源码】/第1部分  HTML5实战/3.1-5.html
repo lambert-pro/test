@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        window.onload = function () {
+            var oLi = document.getElementsByTagName("li");
+            for (var i = 0; i < oLi.length; i++) {
+                console.log(oLi[i].innerText + "：" + oLi[i].dataset.fruitPrice + "/斤");
+            }
+        }
+    </script>
+</head>
+<body>
+    <ul>
+        <li data-fruit-price="￥6.5">苹果</li>
+        <li data-fruit-price="￥12.5">香蕉</li>
+        <li data-fruit-price="￥3.5">西瓜</li>
+    </ul>
+</body>
+</html>

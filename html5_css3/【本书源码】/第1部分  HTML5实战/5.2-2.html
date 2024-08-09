@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        window.onload = function () {
+            var oFile = document.getElementById("file");
+            oFile.onchange = function () {
+                //获取第1个文件
+                var file = oFile.files[0];
+                //将单位“B”转化为“KB”
+                var size = file.size / 1024;
+                var unitArr = ["KB", "MB", "GB", "TB"];
+
+                //转化单位
+                for (var i = 0; size > 1; i++) {
+                    var fileSizeString = size.toFixed(2) + unitArr[i];
+                    size /= 1024;
+                }
+
+                //输出结果
+                console.log("图片大小为：" + fileSizeString);
+            };
+        }
+    </script>
+</head>
+<body>
+    <input id="file" type="file" accept="image/*" />
+</body>
+</html>

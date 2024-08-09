@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        var request = window.indexedDB.open("mydb", 2.0);
+        request.onerror = function () {
+            console.log("创建或打开数据库失败！");
+        };
+        request.onsuccess = function (e) {
+            var db = e.target.result;
+            console.log("创建或打开数据库成功");
+            var transaction = db.transaction(["students"], "readwrite");
+            var store = transaction.objectStore("students");
+
+            var value = {
+                id: 1002,
+                age: 40,
+                name: "Jack"
+            }
+            var dataRequest = store.put(value);
+            dataRequest.onsuccess = function () {
+                console.log("更新数据成功！");
+            };
+            dataRequest.onerror = function () {
+                console.log("更新数据失败！");
+            };
+        };
+    </script>
+</head>
+<body>
+</body>
+</html>

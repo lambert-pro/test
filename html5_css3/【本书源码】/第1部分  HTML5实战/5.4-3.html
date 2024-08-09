@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script type="text/javascript">
+        function $$(id) {
+            return document.getElementById(id);
+        }
+        window.onload = function () {
+            var cnv = $$("canvas");
+            var cxt = cnv.getContext("2d");
+
+            //定义文字
+            var text = "绿叶学习网";
+            cxt.font = "bold 60px 微软雅黑";
+            //定义阴影
+            cxt.shadowOffsetX = 5;
+            cxt.shadowOffsetY = 5;
+            cxt.shadowColor = "#66CCFF";
+            cxt.shadowBlur = 10;
+            //填充文字
+            cxt.fillStyle = "#FF6699";
+            cxt.fillText(text, 10, 90);
+
+            //点击按钮，下载图片
+            $$("btn").onclick = function () {
+                cnv.toBlob(function (blob) {
+                    //通过createObjectURL()方法创建文字链接
+                    var oA = document.createElement("a");
+                    var url = window.URL.createObjectURL(blob);
+
+                    //此处设置图片名字
+                    oA.download = "download";
+                    oA.href = url;
+
+                    //添加元素
+                    document.body.appendChild(oA);
+
+                    //触发点击
+                    oA.click();
+
+                    //移除元素
+                    document.body.removeChild(oA);
+                }, "image/jpeg", 1)
+            }
+        }
+    </script>
+</head>
+<body>
+    <canvas id="canvas" width="320" height="150" style="border:1px solid silver;"></canvas><br />
+    <input id="btn" type="button" value="下载图片" />
+</body>
+</html>

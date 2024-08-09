@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        /*去除默认样式*/
+        * {margin: 0;padding: 0;}
+        .container
+        {
+            width: 160px;
+            margin: 30px auto;
+        }
+        .filePicker
+        {
+            position: relative;
+            width: 160px;
+            height: 44px;
+            line-height: 44px;
+            text-align: center;
+            color: #ffffff;
+            background: #00b7ee;
+        }
+        .filePicker input[type="file"]
+        {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 160px;
+            height: 44px;
+            opacity: 0;
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+    <!--默认时的表单-->
+    <div class="container">
+        <input type="file" />
+    </div>
+    <!--美化后的表单-->
+    <div class="container">
+        <div class="filePicker">
+            <label>点击选择文件</label>
+            <input id="fileInput" type="file" accept="image/*" multiple>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        window.onload = function () {
+            var oVideo = document.getElementsByTagName("video")[0];
+            var oBtnFast = document.getElementById("fast");
+            var oBtnSlow = document.getElementById("slow");
+
+            //快进：速率小于等于1时，每次只增加0.2；大于1时，每次增加1
+            oBtnFast.onclick = function () {
+                if (oVideo.playbackRate <= 1) {
+                    oVideo.playbackRate += 0.2;
+                } else {
+                    oVideo.playbackRate += 1;
+                }
+                console.log(oVideo.playbackRate);
+            };
+            //慢进：速率小于等于1时，每次只减少0.2；大于1时，每次减少1
+            oBtnSlow.onclick = function () {
+                if (oVideo.playbackRate <= 1) {
+                    oVideo.playbackRate -= 0.2;
+                } else {
+                    oVideo.playbackRate -= 1;
+                }
+                console.log(oVideo.playbackRate);
+            };
+        }
+    </script>
+</head>
+<body>
+    <video width="320" height="240" src="media/movie.mp4" autoplay></video><br/>
+    <input id="fast" type="button" value="快进" />
+    <input id="slow" type="button" value="慢进" />
+</body>
+</html>

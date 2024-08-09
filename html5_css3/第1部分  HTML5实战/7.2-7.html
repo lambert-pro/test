@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        window.onload = function () {
+            var oVideo = document.getElementsByTagName("video")[0];
+            var oRange = document.getElementById("range");
+
+            //初始化进度条的3个属性值：min、max、value
+            oRange.min = 0;
+            oRange.max = oVideo.duration;
+            oRange.value = 0;
+
+            //触发滑动条的onchange事件
+            oRange.onchange = function () {
+                oVideo.currentTime = oRange.value;
+            };
+            //触发video的timeupdate事件
+            oVideo.addEventListener("timeupdate", function () {
+                oRange.value = oVideo.currentTime;
+            }, false);
+        }
+    </script>
+</head>
+<body>
+    <video width="320" height="240" src="media/movie.mp4" autoplay></video><br/>
+    <input id="range" type="range" />
+</body>
+</html>

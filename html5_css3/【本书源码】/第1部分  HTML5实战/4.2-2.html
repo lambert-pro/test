@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style type="text/css">
+        #bigBox
+        {
+            display:inline-block;
+            width:100px;
+            height:100px;
+            background-color:hotpink;
+        }
+        #smallBox
+        {
+            display:inline-block;
+            width:50px;
+            height:50px;
+            background-color:lightskyblue;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var oBigBox = document.getElementById("bigBox");
+            var oSmallBox = document.getElementById("smallBox");
+
+            oSmallBox.ondragstart = function () { };      //这一行代码删除也可以
+            oBigBox.ondragover = function (e) {
+                e.preventDefault();
+            };
+            oBigBox.ondrop = function (e) {
+                e.preventDefault();
+                oSmallBox.parentNode.removeChild(oSmallBox);
+            };
+        }
+    </script>
+</head>
+<body>
+    <div id="bigBox"></div>
+    <div id="smallBox" draggable="true"></div>
+</body>
+</html>

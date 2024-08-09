@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style type="text/css">
+        *{margin:0;padding: 0;}
+        body{position: relative;}
+        img{position: absolute;}
+    </style>
+    <script>
+        window.onload = function () {
+            var oImg = document.getElementsByTagName("img")[0];
+            var offsetX, offsetY;
+
+            //元素每次拖动开始时，记录它的坐标（偏移量）
+            oImg.ondragstart = function (e) {
+                offsetX = e.offsetX;
+                offsetY = e.offsetY;
+            };
+
+            //元素拖动过程中，重新设置它的坐标（偏移量）
+            oImg.ondrag = function (e) {
+                if (e.pageX == 0 && e.pageY == 0) {
+                    return;
+                }
+                oImg.style.left = (e.pageX - offsetX) + "px";
+                oImg.style.top = (e.pageY - offsetY) + "px";
+            }
+        }
+    </script>
+</head>
+<body>
+    <img src="img/judy.png" alt="" draggable="true" />
+</body>
+</html>

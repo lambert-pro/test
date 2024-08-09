@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style type="text/css">
+        /*清除所有元素默认的padding和margin*/
+        *{padding:0;margin:0;}
+        /*清除列表项符号*/
+        ul{list-style-type:none;}
+        a
+        {
+            display:inline-block;
+            font-size:12px;
+            height:20px;
+            line-height:20px;
+        }
+        /*匹配doc文件*/
+        a[href$="doc"]::before
+        {
+            content:url("img/1.png");
+        }
+        /*匹配pdf文件*/
+        a[href$="pdf"]::before
+        {
+            content:url("img/2.png");
+        }
+        /*匹配ppt文件*/
+        a[href$="ppt"]::before
+        {
+            content:url("img/3.png");
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li><a href="test.doc" download>下载doc文件</a></li>
+        <li><a href="test.pdf" download>下载pdf文件</a></li>
+        <li><a href="test.ppt" download>下载ppt文件</a></li>
+    </ul>
+</body>
+</html>

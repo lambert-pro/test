@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style type="text/css">
+        div
+        {
+            width:150px;
+            height:50px;
+            line-height: 50px;
+            text-align: center;
+            font-family: "微软雅黑";
+            font-size:24px;
+            border:2px solid orange;;
+            border-radius:20px/50px;
+            color:#df7813;
+            background-color:white;
+        }
+        div:hover
+        {
+            color:white;
+            background-color:orange;
+            transition:all 0.5s ease;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var oDiv = document.getElementsByTagName("div")[0];
+            var oP = document.getElementsByTagName("p")[0];
+
+            oDiv.onclick = function () {
+                //如果用户同意
+                if (Notification.permission == "granted") {
+                    var title = "好友申请";
+                    var options = {
+                        body: "你好呀~可以加个好友吗？",
+                        icon: "img/nvdi.png"
+                    }
+                    var notification = new Notification(title, options);
+
+                    //点击通知框后，在页面添加内容，并关闭通知框
+                    notification.onclick = function () {
+                        oP.innerHTML = "<strong>哇，你已经跟女帝成为了好友！</strong>";
+                        notification.close();
+                    };
+                }
+            };
+        }
+    </script>
+</head>
+<body>
+    <div>查看消息</div>
+    <p></p>
+</body>
+</html>

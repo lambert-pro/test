@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style type="text/css">
+        input:read-write
+        {
+            outline:1px solid red;
+        }
+        input:read-only
+        {
+            background-color:silver;
+        }
+        /*兼容Firefox浏览器*/
+        input:-moz-read-write
+        {
+            outline:1px solid red;
+        }
+        input:-moz-read-only
+        {
+            background-color:silver;
+        }
+    </style>
+</head>
+<body>
+    <form method="post">
+        <p><label for="txt1">读写:</label><input id="txt1" type="text" /></p>
+        <p><label for="txt2">只读:</label><input id="txt2" type="text" readonly /></p>
+    </form>
+</body>
+</html>

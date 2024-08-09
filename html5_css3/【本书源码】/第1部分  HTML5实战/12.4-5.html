@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html> 
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        function $$(id) {
+            return document.getElementById(id);
+        }
+        window.onload = function () {
+            var cnv = $$("canvas");
+            var cxt = cnv.getContext("2d");
+
+            //绘制描边矩形
+            cxt.strokeStyle = "red";
+            cxt.rect(50, 50, 80, 80);
+            cxt.stroke();
+
+            //绘制填充矩形
+            cxt.fillStyle = "#FFE8E8";
+            cxt.rect(50, 50, 80, 80);
+            cxt.fill();
+        }
+    </script>
+</head>
+<body>
+    <canvas id="canvas" width="200" height="150" style="border:1px dashed gray;"></canvas>
+</body>
+</html>

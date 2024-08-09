@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html> 
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        function $$(id) {
+            return document.getElementById(id);
+        }
+        window.onload = function () {
+            var cnv = $$("canvas");
+            var cxt = cnv.getContext("2d");
+
+            cxt.fillStyle = "HotPink";
+            cxt.fillRect(50, 50, 80, 80);
+
+            var btn = $$("btn");
+            btn.onclick = function () {
+                cxt.clearRect(0, 0, cnv.width, cnv.height);
+            }
+        }
+    </script>
+</head>
+<body>
+    <canvas id="canvas" width="200" height="150" style="border:1px dashed gray;"></canvas><br />
+    <input id="btn" type="button" value="清空canvas"/>
+</body>
+</html>

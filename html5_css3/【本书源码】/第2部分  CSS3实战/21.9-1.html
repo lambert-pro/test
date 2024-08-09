@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style type="text/css">
+        @keyframes mytranslate
+        {
+            0%{}
+            50%{transform:translateX(160px);} 
+            100%{}
+        }
+        #ball
+        {
+            width:40px;
+            height:40px;
+            border-radius:20px;
+            background-color:red;
+            animation-name:mytranslate;
+            animation-timing-function:linear;
+            animation-duration:2s;
+            animation-iteration-count:infinite;
+        }
+        #container
+        {
+            display:inline-block;
+            width:200px;
+            border:1px solid silver;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var oBall = document.getElementById("ball");
+            var oBtnPause = document.getElementById("btn_pause");
+            var oBtnRun = document.getElementById("btn_run");
+
+            //暂停
+            oBtnPause.onclick = function () {
+                oBall.style.animationPlayState = "paused";
+            };
+            //播放
+            oBtnRun.onclick = function () {
+                oBall.style.animationPlayState = "running";
+            };
+
+        }
+    </script>
+</head>
+<body>
+    <div id="container">
+        <div id="ball"></div>
+    </div>
+    <div>
+        <input id="btn_pause" type="button" value="暂停" />
+        <input id="btn_run" type="button" value="播放" />
+    </div>
+</body>
+</html>
