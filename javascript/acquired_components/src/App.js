@@ -1,8 +1,10 @@
+/* global Acquired */
+
 import './App.css';
 import { useEffect, useState } from 'react';
 
 function App() {
-	const sessionId = '019145bb-5591-73da-bfa5-e1a711763fc3';
+	const sessionId = '01914aa1-5123-7355-8466-8effd8306f0d';
 	const publicKey = 'pk_346c8a4e32dc57bc7bb7db132bd0cbfa';
 
 	const confirmParams = {
@@ -59,27 +61,27 @@ function App() {
 	useEffect(() => {
 		const loadAcquiredScript = () => {
 			const scriptExists = document.querySelector('script[src="https://cdn.acquired.com/sdk/v1.1/acquired.js"]');
+			const script = document.createElement('script');
 			if (!scriptExists) {
-				const script = document.createElement('script');
+				script.type = 'text/javascript';
 				script.src = 'https://cdn.acquired.com/sdk/v1.1/acquired.js';
 				// script.src = 'https://test-cdn.acquired.com/sdk/v1.1/acquired.js';
 				script.async = true;
 				script.onload = () => {
 					console.log('Acquired script loaded successfully.');
-					const acquired = new Acquired(publicKey, 'debug');
 					initAcquired();
 				};
 				script.onerror = () => {
 					console.error('Failed to load Acquired script.');
 				};
-				document.body.appendChild(script);
+
 			} else {
 				initAcquired();
 			}
+			document.body.appendChild(script);
 		};
 
 		const initAcquired = () => {
-			console.log(44444)
 			if (formContent !== '') {
 				const acquired = new Acquired(publicKey, 'debug');
 				const options = { session: sessionId, environment: 'test' };
@@ -113,10 +115,10 @@ function App() {
 						if (response.isTdsPending()) {
 							window.location.href = response.data.redirect_url;
 						} else if (response.isSuccess()) {
-							document.querySelector('#error-message').textContent = JSON.stringify(response.data);
+							document.getElementById('response').value = JSON.stringify(response, null, 2);
 						} else if (response.isError()) {
 							acquired.showComponentErrorMessage('.component-error', response.data);
-							document.querySelector('#error-message').textContent = JSON.stringify(response.data);
+							document.querySelector('#response').textContent = JSON.stringify(response.data);
 						}
 					} catch (error) {
 						document.getElementById('response').value = `Error: ${error.message}`;
@@ -185,6 +187,7 @@ function App() {
 				<div>
 					<textarea id="response" readOnly></textarea>
 				</div>
+
 			</div>
 	);
 }
