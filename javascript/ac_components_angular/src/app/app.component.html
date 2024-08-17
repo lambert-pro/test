@@ -1,0 +1,23 @@
+<div class="App">
+  <header class="App-header">
+    <p>Edit <code>src/app/app.component.ts</code> and save to reload.</p>
+    <a class="App-link" href="https://zh-hans.react.dev/" target="_blank" rel="noopener noreferrer">
+      Learn Angular
+    </a><br />
+
+    <button class="button" (click)="handleButtonClick('card')">card-form 支付</button>
+    <button class="button" (click)="handleButtonClick('payment')">payment-form 支付</button>
+  </header>
+  <div class="Div-form">
+
+    <h2 id="title">支付表单</h2>
+    <form id="${type}-form" class="form-main">
+      <div id="payment-component"></div>
+      <button type="submit" id="submit">Submit</button>
+    </form>
+
+  </div>
+  <div>
+    <textarea id="response" readonly></textarea>
+  </div>
+</div>
