@@ -80,8 +80,6 @@ export class AppComponent implements OnInit {
       script.src = 'https://cdn.acquired.com/sdk/v1.1/acquired.js';
       script.async = true;
       script.onload = () => {
-        console.log(123)
-        console.log(Acquired)
         resolve();
       };
       script.onerror = (err) => {
