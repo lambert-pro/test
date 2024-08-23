@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
 
   formContent: string = '';
   formType: string = '';
-  sessionId: string = '01915015-1231-710c-bdfb-6b93dcc14eef';
+  sessionId: string = '01917cf6-fbbd-73b9-a2f1-da78c0046d64';
   publicKey: string = 'pk_346c8a4e32dc57bc7bb7db132bd0cbfa';
 
   confirmParams = {
