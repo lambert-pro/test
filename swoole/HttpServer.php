@@ -1,5 +1,6 @@
 <?php
-date_default_timezone_set('Asia/Shanghai');
+require './SetTimeZone.php';
+
 $http = new \Swoole\Http\Server('0.0.0.0',9501);
 
 $http->on('request', function ($request, $response){
