@@ -5,6 +5,40 @@
 	<title>Title</title>
 </head>
 <body>
+	
+	<div>
+		<input type="text" id="content">
+		<button onclick="send()">发送</button>
+		<span id="response"></span>
+	</div>
 
 </body>
+<script>
+	// websocket 客户端
+	var wsServer = "ws://127.0.0.1:9501";
+	var websocket = new WebSocket(wsServer);
+	
+	websocket.onopen = function (evt){
+		console.log('连接websocket成功')
+	}
+	
+	websocket.onmessage = function (evt){
+		console.log('来自服务器的信息：'+ evt.data)
+		document.getElementById('response').innerHTML = document.getElementById('response').innerHTML + '来自服务器的信息：'+ evt.data + '<br />';
+		
+	}
+
+	websocket.onclose = function (evt){
+		console.log('断开连接')
+	}
+	
+	websocket.onerror = function (evt, e){
+		console.log('发送错误：'+ evt.data)
+	}
+	
+	function send(){
+		websocket.send(document.getElementById('content').value);
+	}
+</script>
+
 </html>
