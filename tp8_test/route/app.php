@@ -16,3 +16,4 @@ Route::get('think', function () {
 
 Route::get('hello/:name', 'index/index/hello');
 Route::get('index', 'index/index/index');
+Route::get('test', 'index/index/test');

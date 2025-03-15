@@ -19,6 +19,6 @@ class Index extends BaseController
 
 	public function test()
 	{
-
+		helper();
 	}
 }
