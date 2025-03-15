@@ -14,4 +14,5 @@ Route::get('think', function () {
     return 'hello,ThinkPHP8!';
 });
 
-Route::get('hello/:name', 'index/hello');
+Route::get('hello/:name', 'index/index/hello');
+Route::get('index', 'index/index/index');
