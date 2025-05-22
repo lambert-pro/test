@@ -25,5 +25,17 @@ return [
             'serialize'  => [],
         ],
         // 更多的缓存连接
+        'redis' => [
+            'type'     => 'redis',
+            'host'     => 'redis', // 这里是你 docker-compose 中的 redis 服务名
+            'port'     => 6379,
+            'password' => '3qP9gPp7pr0jkXLo',
+            'select'   => 0,
+            'timeout'  => 0,
+            'expire'   => 0,
+            'prefix'   => 'tp6:',
+            'tag_prefix' => 'tag:',
+            'serialize'  => [],
+        ],
     ],
 ];
