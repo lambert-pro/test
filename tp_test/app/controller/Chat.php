@@ -1,8 +1,6 @@
 <?php
 
 namespace app\controller;
-
-
 use app\service\ChatService;
 
 class Chat

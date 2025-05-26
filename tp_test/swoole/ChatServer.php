@@ -30,10 +30,25 @@ class ChatServer
         $this->server->on('open', function (Server $server, Request $request){
             echo "Connection open: {$request->fd}\n";
 
-            $messages = (new ChatService())->getMessage();
-            foreach ($messages as $msg) {
-                $server->push($request->fd, "历史记录：".$msg);
+            $fd = $request->fd;
+            $chatService = new ChatService();
+            if (!$chatService->getUser($fd)){
+                $chatService->setUser($fd, '游客'.$fd);
             }
+
+            $messages = $chatService->getMessage();
+            foreach ($messages as $msg) {
+                $server->push($fd, "历史记录：".$msg);
+            }
+
+            //广播上线通知
+            $nickName = $chatService->getUser($fd);
+            foreach ($server->connections as $connFd) {
+                if ($server->isEstablished($connFd)){
+                    $server->push($connFd, json_encode(['type' => 'system', 'message' => "【系统】{$nickName}加入了聊天室"]));
+                }
+            }
+
         });
 
         $this->server->on('message', function (Server $server, Frame $frame){
