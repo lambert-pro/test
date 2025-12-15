@@ -2,9 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Models\LetMeTestModel;
-use think\Exception;
-
 class Index extends BaseController
 {
     public function index()
@@ -15,10 +12,7 @@ class Index extends BaseController
 
     public function test()
     {
-        //$model = new LetMeTestModel();
-        /** @var \App\Models\LetMeTestModel */
-        $model = model('LetMeTestModel');
-        print_r($model->getList());
+        echo "Test";exit;
     }
 
     public function useValidationClass()
@@ -168,6 +162,7 @@ class Index extends BaseController
                 }
             }
         }
-        return 'sort:'.implode(',', $array).'; count:'.$count;
+
+        echo  'sort:'.implode(',', $array).'; count:'.$count;die;
     }
 }
