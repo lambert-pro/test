@@ -1,9 +1,0 @@
-#!/bin/bash
-#脚本获取docker容器
-
-containers=$(docker ps --format '{{.Names}}')
-
-for container in $containers
-do
-    echo "Container name: $container"
-done
